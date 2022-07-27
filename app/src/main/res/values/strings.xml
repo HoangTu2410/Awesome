@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Awesome chat</string>
+    <string name="loginWelcome">Trải nghiệm Awesome chat</string>
+    <string name="loginScreen">Đăng nhập</string>
+    <string name="back_button">Back Button</string>
+    <string name="register_screen">Đăng ký</string>
+    <string name="email">EMAIL</string>
+    <string name="password">MẬT KHẨU</string>
+    <string name="fullname">HỌ VÀ TÊN</string>
+    <string name="message_header">Tin nhắn</string>
+</resources>

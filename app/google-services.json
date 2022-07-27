@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "473747880216",
+    "firebase_url": "https://awesome-chat-aa87a-default-rtdb.firebaseio.com",
+    "project_id": "awesome-chat-aa87a",
+    "storage_bucket": "awesome-chat-aa87a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473747880216:android:f1d4ba0d6af50bf0c2466d",
+        "android_client_info": {
+          "package_name": "com.rikkei.awesome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473747880216-q728i6lnev1l8a2ipkrkd79fgk6i2g9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfIu_o29AifrNzDyN790DDMFF56bAtiW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473747880216-q728i6lnev1l8a2ipkrkd79fgk6i2g9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
