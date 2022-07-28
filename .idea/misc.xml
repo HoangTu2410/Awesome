@@ -12,18 +12,15 @@
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_mail.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_user.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/chat_item_left.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/chat_item_right.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_child_friend.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_child_friend_list.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_child_message.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_home.xml" value="0.1814814814814815" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_login.xml" value="0.19" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_message_2_user.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_personal.xml" value="0.1814814814814815" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_register.xml" value="0.1814814814814815" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/fragment_splash.xml" value="0.1814814814814815" />
-        <entry key="..\:/ThucTap/Awesome/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable-v24/background_avatar.xml" value="0.2645" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/chat_item_left.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_home.xml" value="0.1656534954407295" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_message_2_user.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_personal.xml" value="0.1656534954407295" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
