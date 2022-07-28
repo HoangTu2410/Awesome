@@ -34,9 +34,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        holder.tv_ten_banbe.setText(listFriend.get(position).getUser1());
-        holder.tv_tgian_tin_cuoi.setText(listFriend.get(position).getDate());
-        holder.tv_tin_cuoi.setText(listFriend.get(position).getMessage());
+        if (listFriend.get(position).getDescription() != ""){
+            holder.tv_ten_banbe.setText(listFriend.get(position).getDescription());
+        } else
+            holder.tv_ten_banbe.setText(listFriend.get(position).getUser1());
+        holder.tv_tgian_tin_cuoi.setText(listFriend.get(position).getTime());
+        holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
     }
 
     @Override
