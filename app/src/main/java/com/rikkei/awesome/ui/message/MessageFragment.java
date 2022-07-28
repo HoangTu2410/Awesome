@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -50,16 +52,28 @@ public class MessageFragment extends Fragment implements MessageInterface{
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        MessagePresenter.getListRoom(UId, new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     void Init(){
         recyclerView = view.findViewById(R.id.recycler_message);
     }
 
-    @Override
-    public void getListRoom(String username, ValueEventListener valueEventListener) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("room_chat");
-        myRef.orderByKey().startAt(UId).endAt(UId.concat("\uf8ff")).addValueEventListener(valueEventListener);
-    }
+
 
     @Override
     public void onUserLongClicked(User user, int position) {
