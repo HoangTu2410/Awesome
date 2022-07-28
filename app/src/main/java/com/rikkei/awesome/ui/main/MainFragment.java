@@ -59,7 +59,7 @@ public class MainFragment extends Fragment implements MainInterface{
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
 
-        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context)).addToBackStack("message").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId)).addToBackStack("message").commit();
 
         searchView.setOnClickListener(searchListener);
 
@@ -74,7 +74,7 @@ public class MainFragment extends Fragment implements MainInterface{
         hideBlock();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener(){
+    private final BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener(){
         @SuppressLint({"NonConstantResourceId", "UseCompatLoadingForDrawables"})
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -87,7 +87,7 @@ public class MainFragment extends Fragment implements MainInterface{
                     hideBlock();
                     search_title.setText(R.string.search_message_hint);
                     id_nav = 1;
-                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context)).addToBackStack(null).commit();
+                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId)).addToBackStack(null).commit();
                     return true;
                 case R.id.friend_view:
                     hideBlock();
