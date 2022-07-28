@@ -1,4 +1,4 @@
-package com.rikkei.awesome.ui;
+package com.rikkei.awesome.ui.message;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,13 +12,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rikkei.awesome.Adapter.MessageAdapter;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.Message;
+import com.rikkei.awesome.model.User;
 
 import java.util.ArrayList;
 
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements MessageInterface{
 
     View view;
     Context context;
@@ -46,5 +50,21 @@ public class MessageFragment extends Fragment {
 
     void Init(){
         recyclerView = view.findViewById(R.id.recycler_message);
+    }
+
+    @Override
+    public void getListRoom(String username, ValueEventListener valueEventListener) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("room_chat");
+    }
+
+    @Override
+    public void onUserLongClicked(User user, int position) {
+
+    }
+
+    @Override
+    public void onMessageClicked(User user) {
+
     }
 }

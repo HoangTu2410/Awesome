@@ -36,7 +36,7 @@ public class SignupPresenter {
                         if (task.isSuccessful()) {
                             user.setId(mAuth.getCurrentUser().getUid());
                             addUserToDatabase(user);
-                            mSignupInterface.signupSuccessful();
+                            mSignupInterface.signupSuccessful(mAuth.getUid());
                         } else {
                             mSignupInterface.signupFailed();
                         }

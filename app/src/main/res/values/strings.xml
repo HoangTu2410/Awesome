@@ -18,4 +18,7 @@
     <string name="personal">Personal</string>
     <string name="search_message_hint">Find message …</string>
     <string name="search_friend_hint">Find friends …</string>
+    <string name="loginFailed">Email or Password incorrect!</string>
+    <string name="emailIncorrect">Email incorrect!</string>
+    <string name="passwordIncorrect">Password incorrect!</string>
 </resources>

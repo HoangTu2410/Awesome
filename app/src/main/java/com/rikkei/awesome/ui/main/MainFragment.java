@@ -22,12 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.ui.FriendListFragment;
-import com.rikkei.awesome.ui.MessageFragment;
+import com.rikkei.awesome.ui.message.MessageFragment;
 import com.rikkei.awesome.ui.PersonalFragment;
 import com.rikkei.awesome.ui.SearchFriendFragment;
 import com.rikkei.awesome.ui.SearchMessageFragment;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainInterface{
 
     View view;
     BottomNavigationView nav_bottom;
@@ -37,7 +37,7 @@ public class MainFragment extends Fragment {
     TextView title, search_title;
     Context context;
     int id_nav = 1;
-
+    String UId;
     FrameLayout fragment_container;
     ImageView img_icon;
 
@@ -46,6 +46,11 @@ public class MainFragment extends Fragment {
 
     public MainFragment(Context context) {
         this.context = context;
+    }
+
+    public MainFragment(Context context, String UId) {
+        this.context = context;
+        this.UId = UId;
     }
 
     @Nullable
@@ -144,4 +149,5 @@ public class MainFragment extends Fragment {
         block_personal.setVisibility(View.GONE);
 
     }
+
 }

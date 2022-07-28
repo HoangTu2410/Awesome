@@ -2,7 +2,7 @@ package com.rikkei.awesome.ui.signup;
 
 public interface SignupInterface {
 
-    void signupSuccessful();
+    void signupSuccessful(String UId);
 
     void signupFailed();
 

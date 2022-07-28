@@ -199,9 +199,9 @@ public class SignupFragment extends Fragment implements SignupInterface{
     }
 
     @Override
-    public void signupSuccessful() {
+    public void signupSuccessful(String UId) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
+        transaction.replace(R.id.home_container,new MainFragment(context, UId),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

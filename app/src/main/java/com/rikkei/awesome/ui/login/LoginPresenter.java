@@ -1,5 +1,7 @@
 package com.rikkei.awesome.ui.login;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,14 +23,14 @@ public class LoginPresenter {
         this.mMainActivity = mainActivity;
     }
 
-    public void login(String email, String password){
+    public void login(User user){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener(mMainActivity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mLoginInterface.loginSuccessful();
+                            mLoginInterface.loginSuccessful(mAuth.getUid());
                         } else {
                            mLoginInterface.loginFailed();
                         }

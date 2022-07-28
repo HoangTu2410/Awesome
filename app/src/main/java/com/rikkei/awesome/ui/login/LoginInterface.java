@@ -2,7 +2,7 @@ package com.rikkei.awesome.ui.login;
 
 public interface LoginInterface {
 
-    void loginSuccessful();
+    void loginSuccessful(String UId);
 
     void loginFailed();
 

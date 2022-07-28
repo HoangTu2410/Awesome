@@ -19,4 +19,7 @@
     <string name="personal">Trang cá nhân</string>
     <string name="search_message_hint">Tìm kiếm tin nhắn …</string>
     <string name="search_friend_hint">Tìm kiếm bạn bè …</string>
+    <string name="loginFailed">Email hoặc Password sai!</string>
+    <string name="emailIncorrect">Email sai rồi!</string>
+    <string name="passwordIncorrect">Password sai rồi!</string>
 </resources>

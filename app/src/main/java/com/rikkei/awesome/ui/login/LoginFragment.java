@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.ui.main.MainFragment;
 import com.rikkei.awesome.ui.signup.SignupFragment;
 
@@ -134,29 +135,29 @@ public class LoginFragment extends Fragment implements LoginInterface{
                 String email = txtEmail.getEditText().getText().toString().trim();
                 String password = txtPassword.getEditText().getText().toString().trim();
                 if (!mLoginPresenter.checkValidateEmail(email)) {
-                    txtAlert.setText("Email incorrect!");
+                    txtAlert.setText(R.string.emailIncorrect);
                     return;
                 }
                 if (!mLoginPresenter.checkValidatePassword(password)) {
-                    txtAlert.setText("Password incorrect!");
+                    txtAlert.setText(R.string.passwordIncorrect);
                     return;
                 }
-                mLoginPresenter.login(email,password);
+                mLoginPresenter.login(new User(email,password));
             }
         });
     }
 
     @Override
-    public void loginSuccessful() {
+    public void loginSuccessful(String UId) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
+        transaction.replace(R.id.home_container,new MainFragment(context, UId),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }
 
     @Override
     public void loginFailed() {
-        txtAlert.setText("Email or Password incorrect!");
+        txtAlert.setText(R.string.loginFailed);
     }
 
 }
