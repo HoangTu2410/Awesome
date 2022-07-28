@@ -88,5 +88,12 @@
             android:layout_marginStart="10dp"
             android:id="@+id/btn_send_message"
             android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/message_list"
+            android:layout_above="@+id/txt_send_message"
+            android:paddingTop="20dp"
+            android:layout_alignParentTop="true"/>
     </RelativeLayout>
 </RelativeLayout>
