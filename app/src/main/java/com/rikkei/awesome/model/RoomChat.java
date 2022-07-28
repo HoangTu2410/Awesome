@@ -2,13 +2,13 @@ package com.rikkei.awesome.model;
 
 import java.io.Serializable;
 
-public class Message implements Serializable {
+public class RoomChat implements Serializable {
 
     private String user1;
     private String message;
     private String date;
 
-    public Message(String user1, String message, String date) {
+    public RoomChat(String user1, String message, String date) {
         this.user1 = user1;
         this.message = message;
         this.date = date;

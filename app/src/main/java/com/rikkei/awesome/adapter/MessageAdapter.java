@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rikkei.awesome.R;
-import com.rikkei.awesome.model.Message;
+import com.rikkei.awesome.model.RoomChat;
 
 import java.util.ArrayList;
 
@@ -19,9 +19,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder> {
 
     Context context;
-    ArrayList<Message> listFriend;
+    ArrayList<RoomChat> listFriend;
 
-    public MessageAdapter(Context context, ArrayList<Message> listFriend) {
+    public MessageAdapter(Context context, ArrayList<RoomChat> listFriend) {
         this.context = context;
         this.listFriend = listFriend;
     }
