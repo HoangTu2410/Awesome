@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rikkei.awesome.Adapter.MessageAdapter;
+import com.rikkei.awesome.adapter.MessageAdapter;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.Message;
 import com.rikkei.awesome.model.User;

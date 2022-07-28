@@ -1,4 +1,4 @@
-package com.rikkei.awesome.Adapter;
+package com.rikkei.awesome.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
