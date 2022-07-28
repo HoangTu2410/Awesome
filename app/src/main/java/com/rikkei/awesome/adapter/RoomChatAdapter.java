@@ -47,7 +47,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatAdapter.RCView
 
         RelativeLayout friend_item, user_item;
         CircleImageView avatar;
-        TextView message_friend, message_user;
+        TextView message_friend, message_user, txt_time_friend, txt_time_user;
 
         public RCViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +56,8 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatAdapter.RCView
             avatar = itemView.findViewById(R.id.profile_image_friend);
             message_friend = itemView.findViewById(R.id.show_message_friend);
             message_user = itemView.findViewById(R.id.show_message);
+            txt_time_friend = itemView.findViewById(R.id.txt_time_friend_send);
+            txt_time_user = itemView.findViewById(R.id.txt_time_user_send);
         }
     }
 }
