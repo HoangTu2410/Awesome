@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.home_container, new SplashFragment(this), "fragment_splash");
+            transaction.replace(R.id.home_container, new SplashFragment(), "fragment_splash");
             transaction.commit();
         }
     }

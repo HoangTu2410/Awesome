@@ -34,14 +34,6 @@ public class LoginFragment extends Fragment implements LoginInterface{
     private TextView txtForgotPassword, txtRegisterAccount, txtAlert;
     private Button btnLogin;
     private LoginPresenter mLoginPresenter;
-    Context context;
-
-    public LoginFragment(Context context) {
-        this.context = context;
-    }
-
-    public LoginFragment() {
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,7 +71,7 @@ public class LoginFragment extends Fragment implements LoginInterface{
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.home_container,new SignupFragment(context),"fragment_signup");
+                transaction.replace(R.id.home_container,new SignupFragment(),"fragment_signup");
                 transaction.addToBackStack("fragment_signup");
                 transaction.commit();
             }
@@ -149,7 +141,7 @@ public class LoginFragment extends Fragment implements LoginInterface{
     @Override
     public void loginSuccessful() {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
+        transaction.replace(R.id.home_container,new MainFragment(),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

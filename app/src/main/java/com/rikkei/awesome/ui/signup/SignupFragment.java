@@ -34,14 +34,6 @@ public class SignupFragment extends Fragment implements SignupInterface{
     private Button btnRegister;
     private TextView txtLogin, txtAlert;
     private SignupPresenter mSignupPresenter;
-    Context context;
-
-    public SignupFragment() {
-    }
-
-    public SignupFragment(Context context) {
-        this.context = context;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -201,7 +193,7 @@ public class SignupFragment extends Fragment implements SignupInterface{
     @Override
     public void signupSuccessful() {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
+        transaction.replace(R.id.home_container,new MainFragment(),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

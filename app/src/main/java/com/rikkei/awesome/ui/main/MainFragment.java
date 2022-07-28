@@ -40,13 +40,6 @@ public class MainFragment extends Fragment {
     FrameLayout fragment_container;
     ImageView img_icon;
 
-    public MainFragment() {
-    }
-
-    public MainFragment(Context context) {
-        this.context = context;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rikkei.awesome.Adapter.MessageAdapter;
+import com.rikkei.awesome.adapter.MessageAdapter;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.Message;
 

@@ -1,4 +1,4 @@
-package com.rikkei.awesome.Adapter;
+package com.rikkei.awesome.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -29,7 +29,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyHolder(LayoutInflater.from(context).inflate(R.layout.item_recyclerview_1, parent, false));
+        return new MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_1, parent, false));
     }
 
     @Override
