@@ -1,17 +1,18 @@
 <resources>
     <string name="app_name">Awesome Chat</string>
-    <string name="loginWelcome">Trải nghiệm Awesome chat</string>
-    <string name="loginScreen">Đăng nhập</string>
+    <string name="loginWelcome">Join the Awesome chat</string>
+    <string name="loginScreen">Login</string>
     <string name="back_button">Back Button</string>
-    <string name="register_screen">Đăng ký</string>
+    <string name="register_screen">Sign up</string>
     <string name="email">EMAIL</string>
-    <string name="password">MẬT KHẨU</string>
-    <string name="fullname">HỌ VÀ TÊN</string>
-    <string name="message_header">Tin nhắn</string>
-    <string name="language">Ngôn ngữ</string>
-    <string name="vietnamese">Tiếng Việt</string>
-    <string name="notification">Thông báo</string>
-    <string name="version">Phiên bản</string>
-    <string name="logout">Đăng xuất</string>
-    <string name="friend_title">Bạn bè</string>
+    <string name="password">PASSWORD</string>
+    <string name="fullname">FULL NAME</string>
+    <string name="message_header">Message</string>
+    <string name="language">Language</string>
+    <string name="vietnamese">Vietnamese</string>
+    <string name="english">English</string>
+    <string name="notification">Notification</string>
+    <string name="version">Version</string>
+    <string name="logout">Log out</string>
+    <string name="friend_title">Friend</string>
 </resources>
