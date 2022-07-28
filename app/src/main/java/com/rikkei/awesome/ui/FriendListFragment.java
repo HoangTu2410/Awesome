@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
-import com.rikkei.training.morkproject.awesomechat.R;
+import com.rikkei.awesome.R;
 
 public class FriendListFragment extends Fragment {
 
