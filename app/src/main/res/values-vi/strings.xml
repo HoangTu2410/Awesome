@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Awesome Chat</string>
+    <string name="loginWelcome">Trải nghiệm Awesome chat</string>
+    <string name="loginScreen">Đăng nhập</string>
+    <string name="back_button">Back Button</string>
+    <string name="register_screen">Đăng ký</string>
+    <string name="email">EMAIL</string>
+    <string name="password">MẬT KHẨU</string>
+    <string name="fullname">HỌ VÀ TÊN</string>
+    <string name="message_header">Tin nhắn</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="vietnamese">Tiếng Việt</string>
+    <string name="notification">Thông báo</string>
+    <string name="version">Phiên bản</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="friend_title">Bạn bè</string>
+</resources>
