@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment implements LoginInterface{
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.home_container,new SignupFragment(),"fragment_signup");
+                transaction.replace(R.id.home_container,new SignupFragment(context),"fragment_signup");
                 transaction.addToBackStack("fragment_signup");
                 transaction.commit();
             }
