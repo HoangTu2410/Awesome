@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
                     return true;
                 case R.id.friend_view:
                     hideBlock();
-                    title.setText(R.string.friend_title + "   ");
+                    title.setText(R.string.friend_title );
                     search_title.setText(R.string.search_friend_hint);
                     res = getResources().getDrawable(getResources().getIdentifier("@drawable/ic_add_friend", null, getActivity().getPackageName()));
                     img_icon.setImageDrawable(res);

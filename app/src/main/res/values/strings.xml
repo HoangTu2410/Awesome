@@ -14,7 +14,7 @@
     <string name="notification">Notification</string>
     <string name="version">Version</string>
     <string name="logout">Log out</string>
-    <string name="friend_title">Friend</string>
+    <string name="friend_title">Friend    </string>
     <string name="personal">Personal</string>
     <string name="search_message_hint">Find message …</string>
     <string name="search_friend_hint">Find friends …</string>
