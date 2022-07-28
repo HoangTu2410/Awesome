@@ -28,6 +28,7 @@ import com.rikkei.awesome.ui.SearchFriendFragment;
 import com.rikkei.awesome.ui.SearchMessageFragment;
 
 public class MainFragment extends Fragment {
+
     View view;
     BottomNavigationView nav_bottom;
     RelativeLayout block_personal, block_special, searchView;
@@ -77,16 +78,16 @@ public class MainFragment extends Fragment {
                 case R.id.message_view:
                     res = getResources().getDrawable(getResources().getIdentifier("@drawable/ic_create_message", null, getActivity().getPackageName()));
                     img_icon.setImageDrawable(res);
-                    title.setText("Tin nhắn");
+                    title.setText(R.string.message_header);
                     hideBlock();
-                    search_title.setText("Tìm kiếm tin nhắn...");
+                    search_title.setText(R.string.search_message_hint);
                     id_nav = 1;
                     getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context)).addToBackStack(null).commit();
                     return true;
                 case R.id.friend_view:
                     hideBlock();
-                    title.setText("Bạn bè   ");
-                    search_title.setText("Tìm kiếm bạn bè...");
+                    title.setText(R.string.friend_title + "   ");
+                    search_title.setText(R.string.search_friend_hint);
                     res = getResources().getDrawable(getResources().getIdentifier("@drawable/ic_add_friend", null, getActivity().getPackageName()));
                     img_icon.setImageDrawable(res);
                     id_nav = 2;
@@ -102,7 +103,7 @@ public class MainFragment extends Fragment {
         }
     };
 
-    private RelativeLayout.OnClickListener searchListener = new RelativeLayout.OnClickListener() {
+    private final RelativeLayout.OnClickListener searchListener = new RelativeLayout.OnClickListener() {
         @Override
         public void onClick(View v) {
             block_personal.setVisibility(View.VISIBLE);

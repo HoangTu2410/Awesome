@@ -17,4 +17,6 @@
     <string name="logout">Đăng xuất</string>
     <string name="friend_title">Bạn bè</string>
     <string name="personal">Trang cá nhân</string>
+    <string name="search_message_hint">Tìm kiếm tin nhắn …</string>
+    <string name="search_friend_hint">Tìm kiếm bạn bè …</string>
 </resources>
