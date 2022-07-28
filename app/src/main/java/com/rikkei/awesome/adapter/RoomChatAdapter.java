@@ -43,7 +43,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatAdapter.RCView
         return listMessage.size();
     }
 
-    public class RCViewHolder extends RecyclerView.ViewHolder {
+    public static class RCViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout friend_item, user_item;
         CircleImageView avatar;
