@@ -27,10 +27,12 @@ public class MessageFragment extends Fragment implements MessageInterface{
     View view;
     Context context;
     RecyclerView recyclerView;
+    String UId;
 
     public MessageFragment(){}
-    public MessageFragment(Context context){
+    public MessageFragment(Context context, String UId){
         this.context = context;
+        this.UId = UId;
     }
 
     @Nullable
@@ -56,6 +58,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     public void getListRoom(String username, ValueEventListener valueEventListener) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("room_chat");
+        myRef.orderByKey().startAt(UId).endAt(UId.concat("\uf8ff")).addValueEventListener(valueEventListener);
     }
 
     @Override
