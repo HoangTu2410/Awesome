@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/message_view"
+        android:icon="@drawable/ic_message_unchoosing"
+        android:title="Tin nhắn"/>
+    <item android:id="@+id/friend_view"
+        android:icon="@drawable/ic_friend"
+        android:title="Bạn bè"/>
+    <item android:id="@+id/personal_view"
+        android:icon="@drawable/ic_personal"
+        android:title="Trang cá nhân"/>
+</menu>
