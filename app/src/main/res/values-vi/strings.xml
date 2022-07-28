@@ -16,4 +16,5 @@
     <string name="version">Phiên bản</string>
     <string name="logout">Đăng xuất</string>
     <string name="friend_title">Bạn bè</string>
+    <string name="personal">Trang cá nhân</string>
 </resources>

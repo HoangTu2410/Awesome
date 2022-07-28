@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/message_view"
         android:icon="@drawable/ic_message_unchoosing"
-        android:title="Tin nhắn"/>
+        android:title="@string/message_header"/>
     <item android:id="@+id/friend_view"
         android:icon="@drawable/ic_friend"
-        android:title="Bạn bè"/>
+        android:title="@string/friend_title"/>
     <item android:id="@+id/personal_view"
         android:icon="@drawable/ic_personal"
-        android:title="Trang cá nhân"/>
+        android:title="@string/personal"/>
 </menu>

@@ -15,4 +15,5 @@
     <string name="version">Version</string>
     <string name="logout">Log out</string>
     <string name="friend_title">Friend</string>
+    <string name="personal">Personal</string>
 </resources>
