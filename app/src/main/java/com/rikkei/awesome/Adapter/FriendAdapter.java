@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rikkei.awesome.model.User;
 import com.rikkei.training.morkproject.awesomechat.Model.User;
 import com.rikkei.training.morkproject.awesomechat.R;
 

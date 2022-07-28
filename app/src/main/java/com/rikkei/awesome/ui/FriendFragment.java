@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rikkei.training.morkproject.awesomechat.Adapter.FriendAdapter;
-import com.rikkei.training.morkproject.awesomechat.Model.User;
-import com.rikkei.training.morkproject.awesomechat.R;
+import com.rikkei.awesome.Adapter.FriendAdapter;
+import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.User;
 
 import java.util.ArrayList;
 

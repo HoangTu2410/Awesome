@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.rikkei.training.morkproject.awesomechat.R;
+import com.rikkei.awesome.R;
 
 public class UpdateInformationFragment extends Fragment {
 
