@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.rikkei.awesome.BuildConfig;
 import com.rikkei.awesome.R;
-import com.rikkei.training.morkproject.awesomechat.BuildConfig;
-import com.rikkei.training.morkproject.awesomechat.R;
 
 public class PersonalFragment extends Fragment {
 

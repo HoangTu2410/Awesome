@@ -12,9 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.User;
-import com.rikkei.training.morkproject.awesomechat.Model.User;
-import com.rikkei.training.morkproject.awesomechat.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +72,6 @@ public class AllFriendAdapter extends RecyclerView.Adapter<AllFriendAdapter.MyHo
             friend_name = itemView.findViewById(R.id.friend_name);
             avatar_friend = itemView.findViewById(R.id.avatar_friend);
             btn_add_friend = itemView.findViewById(R.id.btn_add_friend);
-            btn_refuse_friend = itemView.findViewById(R.id.btn_refuse_friend);
         }
 
         public TextView getSection() {

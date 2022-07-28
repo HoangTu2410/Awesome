@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.rikkei.training.morkproject.awesomechat.R;
+import com.rikkei.awesome.R;
+
 
 public class SearchMessageFragment extends Fragment {
 

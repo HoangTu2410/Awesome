@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rikkei.training.morkproject.awesomechat.Model.Message;
-import com.rikkei.training.morkproject.awesomechat.R;
+import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.Message;
 
 import java.util.ArrayList;
 
