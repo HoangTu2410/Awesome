@@ -1,5 +1,6 @@
 package com.rikkei.awesome.ui.splash;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,14 @@ public class SplashFragment extends Fragment implements SplashInterface{
 
     private SplashPresenter mSplashPresenter;
     private FragmentTransaction transaction;
+    private Context context;
+
+    public SplashFragment() {
+    }
+
+    public SplashFragment(Context context) {
+        this.context = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,14 +46,14 @@ public class SplashFragment extends Fragment implements SplashInterface{
 
     @Override
     public void isLogin() {
-        transaction.replace(R.id.home_container,new MainFragment(),"fragment_main");
+        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }
 
     @Override
     public void notLogin() {
-        transaction.replace(R.id.home_container,new LoginFragment(),"fragment_login");
+        transaction.replace(R.id.home_container,new LoginFragment(context),"fragment_login");
         transaction.addToBackStack("fragment_login");
         transaction.commit();
     }
