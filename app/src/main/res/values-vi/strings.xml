@@ -22,4 +22,5 @@
     <string name="loginFailed">Email hoặc Password sai!</string>
     <string name="emailIncorrect">Email sai rồi!</string>
     <string name="passwordIncorrect">Password sai rồi!</string>
+    <string name="registerFailed">Đăng ký thất bại!</string>
 </resources>

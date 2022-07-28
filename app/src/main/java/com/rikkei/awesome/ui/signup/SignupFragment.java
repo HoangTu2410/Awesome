@@ -181,11 +181,11 @@ public class SignupFragment extends Fragment implements SignupInterface{
                 String email = txtEmail.getEditText().getText().toString().trim();
                 String password = txtPassword.getEditText().getText().toString().trim();
                 if (!mSignupPresenter.checkValidateEmail(email)) {
-                    txtAlert.setText("Email incorrect!");
+                    txtAlert.setText(R.string.emailIncorrect);
                     return;
                 }
                 if (!mSignupPresenter.checkValidatePassword(password)) {
-                    txtAlert.setText("Password incorrect!");
+                    txtAlert.setText(R.string.passwordIncorrect);
                     return;
                 }
 
@@ -208,6 +208,6 @@ public class SignupFragment extends Fragment implements SignupInterface{
 
     @Override
     public void signupFailed() {
-        txtAlert.setText("Register failed!");
+        txtAlert.setText(R.string.registerFailed);
     }
 }
