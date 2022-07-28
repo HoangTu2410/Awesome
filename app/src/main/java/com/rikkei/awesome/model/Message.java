@@ -6,7 +6,6 @@ public class Message implements Serializable {
 
     private String user1;
     private String message;
-
     private String date;
 
     public Message(String user1, String message, String date) {

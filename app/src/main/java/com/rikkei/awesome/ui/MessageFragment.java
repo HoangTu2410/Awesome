@@ -37,12 +37,6 @@ public class MessageFragment extends Fragment {
         Init();
 
         ArrayList<Message> arrayList = new ArrayList<>();
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
-        arrayList.add(new Message("Nguyen Van A", "Tin nhan mau", "Hom qua"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new MessageAdapter(context, arrayList));

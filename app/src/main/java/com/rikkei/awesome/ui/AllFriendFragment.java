@@ -65,4 +65,9 @@ public class AllFriendFragment extends Fragment implements OnUserClickedListener
     public void onUserLongClicked(User user, int position) {
 
     }
+
+    @Override
+    public void onMessageClicked(User user) {
+
+    }
 }
