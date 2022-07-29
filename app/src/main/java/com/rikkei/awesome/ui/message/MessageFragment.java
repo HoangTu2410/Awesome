@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.adapter.MessageAdapter;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.RoomChat;
@@ -27,6 +28,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     View view;
     Context context;
     RecyclerView recyclerView;
+    MessagePresenter messagePresenter;
     String UId;
 
     public MessageFragment(){}
@@ -35,17 +37,18 @@ public class MessageFragment extends Fragment implements MessageInterface{
         this.UId = UId;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        messagePresenter = new MessagePresenter(this, (MainActivity) getActivity());
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_child_message, container, false);
-
         Init();
 
-        ArrayList<RoomChat> arrayList = new ArrayList<>();
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MessageAdapter(context, arrayList));
 
         return view;
     }
@@ -54,17 +57,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MessagePresenter.getListRoom(UId, new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     void Init(){
@@ -81,5 +74,11 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void onMessageClicked(User user) {
 
+    }
+
+    @Override
+    public void showListRoomChat(ArrayList<RoomChat> roomChats) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new MessageAdapter(context, roomChats));
     }
 }

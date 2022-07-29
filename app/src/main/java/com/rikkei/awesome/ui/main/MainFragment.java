@@ -50,7 +50,7 @@ public class MainFragment extends Fragment implements MainInterface{
 
     public MainFragment(Context context, String UId) {
         this.context = context;
-        this.UId = UId; //truyen userID để thuan tien trong viec tim kiem
+        this.UId = UId; //truyen userID để thuan tien trong viec tim kiem, thuc hien dang xuat, cung nhu phan trang ca nhan
     }
 
     @Nullable
@@ -122,7 +122,6 @@ public class MainFragment extends Fragment implements MainInterface{
 
     void callBlock(){
         block_personal.setVisibility(View.VISIBLE);
-
         title.setVisibility(View.GONE);
         img_icon.setVisibility(View.GONE);
         searchView.setVisibility(View.GONE);
