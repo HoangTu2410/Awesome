@@ -31,13 +31,12 @@ public class MessagePresenter {
         FirebaseQuery.getListRoomChat(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                GenericTypeIndicator<HashMap<String, RoomChat>> objectsGTypeInd = new GenericTypeIndicator<HashMap<String, RoomChat>>() {
-                };
-                Map<String, RoomChat> objectHashMap = snapshot.getValue(objectsGTypeInd);
-                if (objectHashMap != null){
-                    final ArrayList<RoomChat> roomChatArrayList = new ArrayList<>(objectHashMap.values());
-                    messageInterface.showListRoomChat(roomChatArrayList);
+                ArrayList<RoomChat> list = new ArrayList<>();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
+                    list.add(roomChat);
                 }
+                messageInterface.showListRoomChat(list);
             }
 
             @Override

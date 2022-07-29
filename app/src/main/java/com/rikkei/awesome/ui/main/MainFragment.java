@@ -59,7 +59,7 @@ public class MainFragment extends Fragment implements MainInterface{
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
 
-        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId)).addToBackStack("message").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId), "message").addToBackStack("message").commit();
 
         searchView.setOnClickListener(searchListener);
 

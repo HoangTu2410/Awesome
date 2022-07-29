@@ -13,15 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.rikkei.awesome.MainActivity;
-import com.rikkei.awesome.adapter.MessageAdapter;
-import com.rikkei.awesome.R;
 import com.rikkei.awesome.adapter.RoomChatAdapter;
+import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.RoomChat;
-import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
 import com.rikkei.awesome.utils.ItemClickSupport;
 
@@ -68,8 +62,9 @@ public class MessageFragment extends Fragment implements MessageInterface{
 
     @Override
     public void showListRoomChat(ArrayList<RoomChat> roomChats) {
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MessageAdapter(context, roomChats));
+        recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
 
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override

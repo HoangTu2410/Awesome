@@ -45,8 +45,8 @@ public class SplashFragment extends Fragment implements SplashInterface{
     }
 
     @Override
-    public void isLogin() {
-        transaction.replace(R.id.home_container,new MainFragment(context),"fragment_main");
+    public void isLogin(String Uid) {
+        transaction.replace(R.id.home_container,new MainFragment(context, Uid),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

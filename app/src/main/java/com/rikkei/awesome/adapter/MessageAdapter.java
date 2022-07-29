@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,47 +17,47 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.RCViewHolder> {
 
     Context context;
-    ArrayList<RoomChat> listFriend;
+    ArrayList<RoomChat> listMessage;
 
-    public MessageAdapter(Context context, ArrayList<RoomChat> listFriend) {
+    public MessageAdapter(Context context, ArrayList<RoomChat> listMessage) {
         this.context = context;
-        this.listFriend = listFriend;
+        this.listMessage = listMessage;
     }
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyHolder(LayoutInflater.from(context).inflate(R.layout.item_recyclerview_1, parent, false));
+    public RCViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new RCViewHolder(LayoutInflater.from(context).inflate(R.layout.chat_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        if (listFriend.get(position).getDescription() != ""){
-            holder.tv_ten_banbe.setText(listFriend.get(position).getDescription());
-        } else
-            holder.tv_ten_banbe.setText(listFriend.get(position).getUser1());
-        holder.tv_tgian_tin_cuoi.setText(listFriend.get(position).getTime());
-        holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
+    public void onBindViewHolder(@NonNull RCViewHolder holder, int position) {
+
     }
 
     @Override
     public int getItemCount() {
-        return listFriend.size();
+        return listMessage.size();
     }
 
-    public static class MyHolder extends RecyclerView.ViewHolder {
+    public static class RCViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_ten_banbe, tv_tgian_tin_cuoi, tv_tin_cuoi;
-        CircleImageView img_avatar;
-        public MyHolder(@NonNull View itemView) {
+        RelativeLayout friend_item, user_item;
+        CircleImageView avatar;
+        TextView message_friend, message_user, txt_time_friend, txt_time_user;
+
+        public RCViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_avatar = itemView.findViewById(R.id.img_avatar);
-            tv_ten_banbe = itemView.findViewById(R.id.tv_ten_banbe);
-            tv_tgian_tin_cuoi = itemView.findViewById(R.id.tv_tgian_tin_cuoi);
-            tv_tin_cuoi = itemView.findViewById(R.id.tv_tin_cuoi);
+            friend_item = itemView.findViewById(R.id.friend_item);
+            user_item = itemView.findViewById(R.id.user_item);
+            avatar = itemView.findViewById(R.id.profile_image_friend);
+            message_friend = itemView.findViewById(R.id.show_message_friend);
+            message_user = itemView.findViewById(R.id.show_message);
+            txt_time_friend = itemView.findViewById(R.id.txt_time_friend_send);
+            txt_time_user = itemView.findViewById(R.id.txt_time_user_send);
         }
     }
 }

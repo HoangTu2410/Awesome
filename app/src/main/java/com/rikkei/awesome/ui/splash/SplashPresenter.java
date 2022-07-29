@@ -21,7 +21,7 @@ public class SplashPresenter {
                 if (user == null) {
                     mSplashInterface.notLogin();
                 } else {
-                    mSplashInterface.isLogin();
+                    mSplashInterface.isLogin(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 }
             }
         },2000);

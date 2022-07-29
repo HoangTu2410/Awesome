@@ -4,22 +4,22 @@ import java.io.Serializable;
 
 public class RoomChat implements Serializable {
 
-    private String user1;
-    private String lastMessage;
-    private String time, description;
+    private String sendBy;
+    private String lastMessage, description;
+    private int time;
 
-    public RoomChat(String user1, String lastMessage, String time, String description) {
-        this.user1 = user1;
+    public RoomChat(String sendBy, String lastMessage, int time, String description) {
+        this.sendBy = sendBy;
         this.lastMessage = lastMessage;
         this.time = time;
         this.description = description;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 
@@ -31,18 +31,18 @@ public class RoomChat implements Serializable {
         this.description = description;
     }
 
-    public RoomChat(String user1, String message, String time) {
-        this.user1 = user1;
+    public RoomChat(String sendBy, String message, int time) {
+        this.sendBy = sendBy;
         this.lastMessage = message;
         this.time = time;
     }
 
     public String getUser1() {
-        return user1;
+        return sendBy;
     }
 
-    public void setUser1(String user1) {
-        this.user1 = user1;
+    public void setUser1(String sendBy) {
+        this.sendBy = sendBy;
     }
 
     public String getLastMessage() {
@@ -53,7 +53,4 @@ public class RoomChat implements Serializable {
         this.lastMessage = lastMessage;
     }
 
-    public void setDate(String time) {
-        this.time = time;
-    }
 }
