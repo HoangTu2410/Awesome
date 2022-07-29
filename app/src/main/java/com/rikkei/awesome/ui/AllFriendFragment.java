@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rikkei.awesome.adapter.AllFriendAdapter;
-import com.rikkei.awesome.OnUserClickedListener;
+import com.rikkei.awesome.utils.OnUserClickedListener;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.User;
 

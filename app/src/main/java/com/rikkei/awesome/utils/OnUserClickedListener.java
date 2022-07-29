@@ -1,4 +1,4 @@
-package com.rikkei.awesome;
+package com.rikkei.awesome.utils;
 
 
 import com.rikkei.awesome.model.User;

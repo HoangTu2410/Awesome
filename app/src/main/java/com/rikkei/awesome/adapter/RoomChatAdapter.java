@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.RoomChat;
 import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
 
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatAdapter.RCViewHolder> {
 
     Context context;
-    ArrayList<String> listMessage;
+    ArrayList<RoomChat> listMessage;
 
-    public RoomChatAdapter(Context context, ArrayList<String> listMessage) {
+    public RoomChatAdapter(Context context, ArrayList<RoomChat> listMessage) {
         this.context = context;
         this.listMessage = listMessage;
     }

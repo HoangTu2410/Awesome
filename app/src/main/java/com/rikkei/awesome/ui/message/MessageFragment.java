@@ -19,8 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.adapter.MessageAdapter;
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.adapter.RoomChatAdapter;
 import com.rikkei.awesome.model.RoomChat;
 import com.rikkei.awesome.model.User;
+import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
+import com.rikkei.awesome.utils.ItemClickSupport;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        messagePresenter = new MessagePresenter(this, (MainActivity) getActivity());
+        messagePresenter = new MessagePresenter(this);
     }
 
     @Nullable
@@ -55,8 +58,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
+        messagePresenter.getListRoom(UId);
     }
 
     void Init(){
@@ -64,21 +66,17 @@ public class MessageFragment extends Fragment implements MessageInterface{
     }
 
 
-
-    @Override
-    public void onUserLongClicked(User user, int position) {
-
-    }
-
-    @Override
-    public void onMessageClicked(User user) {
-
-    }
-
     @Override
     public void showListRoomChat(ArrayList<RoomChat> roomChats) {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new MessageAdapter(context, roomChats));
+
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_3, new RoomChatFragment(), "RoomChat").addToBackStack("RoomChat").commit();
+            }
+        });
     }
 
     @Override
