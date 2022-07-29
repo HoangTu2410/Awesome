@@ -1,5 +1,7 @@
 package com.rikkei.awesome.ui.message;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +21,7 @@ public class MessagePresenter {
         this.mainActivity = mainActivity;
     }
 
-    public static void getListRoom(String UId) {
+    public void getListRoom(String UId) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("room_chat");
         myRef.orderByKey().startAt(UId).endAt(UId.concat("\uf8ff")).addValueEventListener(new ValueEventListener() {
@@ -30,7 +32,7 @@ public class MessagePresenter {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                messageInterface.showListRoomChatFailed();
             }
         });
 

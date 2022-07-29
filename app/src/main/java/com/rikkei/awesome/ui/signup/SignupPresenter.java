@@ -52,7 +52,7 @@ public class SignupPresenter {
         String dob = new SimpleDateFormat("dd/MM/yyyy").format(date);
         user.setDob(dob);
         user.setPhoneNumber("88888888");
-        user.setAvatar("default_url");
+        user.setAvatar("gs://awesome-chat-aa87a.appspot.com/img_lights.jpg");//duong link toi anh mac dinh trong thu muc storage
         myRef.child(user.getId()).setValue(user);
     }
 

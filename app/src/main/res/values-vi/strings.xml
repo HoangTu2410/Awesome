@@ -23,4 +23,5 @@
     <string name="emailIncorrect">Email sai rồi!</string>
     <string name="passwordIncorrect">Password sai rồi!</string>
     <string name="registerFailed">Đăng ký thất bại!</string>
+    <string name="getListFailed">Lấy danh sách thất bại! Hãy thử lại sau!</string>
 </resources>

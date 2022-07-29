@@ -8,4 +8,5 @@ import java.util.ArrayList;
 
 public interface MessageInterface extends OnUserClickedListener {
     void showListRoomChat(ArrayList<RoomChat> roomChats);
+    void showListRoomChatFailed();
 }
