@@ -50,7 +50,7 @@ public class MainFragment extends Fragment implements MainInterface{
 
     public MainFragment(Context context, String UId) {
         this.context = context;
-        this.UId = UId;
+        this.UId = UId; //truyen userID để thuan tien trong viec tim kiem
     }
 
     @Nullable
