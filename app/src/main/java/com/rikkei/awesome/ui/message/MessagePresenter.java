@@ -1,6 +1,7 @@
 package com.rikkei.awesome.ui.message;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,7 +42,23 @@ public class MessagePresenter {
     }
 
     public void getListRoom(RecyclerView recyclerView) {
+        FirebaseQuery.getListRoomChat(FirebaseQuery.USERNAME, new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<RoomChat> roomChats = new ArrayList<>();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
+                    roomChats.add(roomChat);
+                }
+                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                messageInterface.showListRoomChatFailed();
+            }
+        });
 
     }
 

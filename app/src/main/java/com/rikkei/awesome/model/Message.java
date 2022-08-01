@@ -3,7 +3,18 @@ package com.rikkei.awesome.model;
 import java.io.Serializable;
 
 public class Message implements Serializable {
-    String content, time, sentby;
+    String content, time, sentby, id;
+
+    public Message() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Message(String content, String time, String sentby) {
         this.content = content;

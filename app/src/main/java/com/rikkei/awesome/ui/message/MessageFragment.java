@@ -65,26 +65,26 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<RoomChat> roomChats = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("room_chat");
-        myRef.orderByKey().addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
-
-                    roomChats.add(roomChat);
-                }
-                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                showListRoomChatFailed();
-            }
-        });
+        messagePresenter.getListRoom(recyclerView);
+//        List<RoomChat> roomChats = new ArrayList<>();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("room_chat");
+//        myRef.orderByKey().addValueEventListener( new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+//                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
+//                    roomChats.add(roomChat);
+//                }
+//                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
+//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                showListRoomChatFailed();
+//            }
+//        });
     }
 
     void Init(){

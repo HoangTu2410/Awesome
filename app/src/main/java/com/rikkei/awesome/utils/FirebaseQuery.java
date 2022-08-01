@@ -15,7 +15,7 @@ public class FirebaseQuery<T> {
     public static void getListRoomChat(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(ROOMCHATS);
-        myRef.orderByKey().startAt(username).endAt(username.concat("\uf8ff")).addValueEventListener(valueEventListener);
+        myRef.orderByKey().addValueEventListener(valueEventListener);
     }
 
     public static void getListMessage(String path, ChildEventListener childEventListener){
