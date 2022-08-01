@@ -1,25 +1,42 @@
 package com.rikkei.awesome.model;
 
-import java.io.Serializable;
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class RoomChat implements Serializable {
 
-    private String sendBy;
+    private String sendBy, id;
     private String lastMessage, description;
-    private int time;
+    private String time;
 
-    public RoomChat(String sendBy, String lastMessage, int time, String description) {
+    public RoomChat(){}
+
+    public RoomChat(String id, String sendBy, String lastMessage, String time, String description) {
         this.sendBy = sendBy;
         this.lastMessage = lastMessage;
         this.time = time;
+        this.id = id;
         this.description = description;
     }
 
-    public int getTime() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -31,17 +48,17 @@ public class RoomChat implements Serializable {
         this.description = description;
     }
 
-    public RoomChat(String sendBy, String message, int time) {
+    public RoomChat(String sendBy, String message, String time) {
         this.sendBy = sendBy;
         this.lastMessage = message;
         this.time = time;
     }
 
-    public String getUser1() {
+    public String getSendBy() {
         return sendBy;
     }
 
-    public void setUser1(String sendBy) {
+    public void setSendBy(String sendBy) {
         this.sendBy = sendBy;
     }
 

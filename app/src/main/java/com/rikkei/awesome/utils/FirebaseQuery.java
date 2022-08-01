@@ -10,9 +10,9 @@ public class FirebaseQuery<T> {
     public static final String USERS = "users";
     public static final String ROOMCHATS = "room_chat";
     public static final String MESSAGES = "message_text";
-    public static String username = "";
+    public static String USERNAME = "";
 
-    public static void getListRoomChat(String userid, ValueEventListener valueEventListener){
+    public static void getListRoomChat(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(ROOMCHATS);
         myRef.orderByKey().startAt(username).endAt(username.concat("\uf8ff")).addValueEventListener(valueEventListener);

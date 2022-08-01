@@ -23,4 +23,6 @@
     <string name="passwordIncorrect">Password incorrect!</string>
     <string name="registerFailed">Register failed!</string>
     <string name="getListFailed">Get list failed! Try again later!</string>
+    <string name="phoneNo">PHONE NUMBER</string>
+    <string name="dob">BIRTHDAY</string>
 </resources>
