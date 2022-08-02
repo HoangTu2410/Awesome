@@ -142,7 +142,7 @@ public class LoginFragment extends Fragment implements LoginInterface{
                     txtAlert.setText(R.string.passwordIncorrect);
                     return;
                 }
-                mLoginPresenter.login(new User(email,password));
+                mLoginPresenter.login(email, password);
             }
         });
     }

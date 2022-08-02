@@ -36,8 +36,9 @@ public class FirebaseQuery<T> {
         myRef.addChildEventListener(childEventListener);
     }
 
-    public static void getUser(){
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        //User user = auth.getCurrentUser().
+    public static void getUser(String Uid, ValueEventListener valueEventListener){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(USERS);
+        myRef.orderByKey().equalTo(Uid).addValueEventListener(valueEventListener);
     }
 }

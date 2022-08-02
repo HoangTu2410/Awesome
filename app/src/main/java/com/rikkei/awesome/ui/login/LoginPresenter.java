@@ -23,9 +23,9 @@ public class LoginPresenter {
         this.mMainActivity = mainActivity;
     }
 
-    public void login(User user){
+    public void login(String email, String password){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(mMainActivity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
