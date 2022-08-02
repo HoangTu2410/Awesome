@@ -23,4 +23,9 @@ public class FirebaseQuery<T> {
         DatabaseReference myRef = database.getReference(MESSAGES).child(path);
         myRef.addChildEventListener(childEventListener);
     }
+
+    public static void getUser(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(USERS);
+    }
 }

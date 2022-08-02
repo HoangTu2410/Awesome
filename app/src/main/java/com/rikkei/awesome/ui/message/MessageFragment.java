@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.core.Query;
 import com.rikkei.awesome.adapter.RoomChatAdapter;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.RoomChat;
+import com.rikkei.awesome.ui.main.MainFragment;
 import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
 import com.rikkei.awesome.utils.FirebaseQuery;
 import com.rikkei.awesome.utils.ItemClickSupport;
@@ -39,12 +41,14 @@ public class MessageFragment extends Fragment implements MessageInterface{
     Context context;
     RecyclerView recyclerView;
     MessagePresenter messagePresenter;
+    BottomNavigationView navBottom;
     String UId;
 
     public MessageFragment(){}
-    public MessageFragment(Context context, String UId){
+    public MessageFragment(Context context, String UId, BottomNavigationView navBottom){
         this.context = context;
         this.UId = UId;
+        this.navBottom = navBottom;
     }
 
     @Override
@@ -106,6 +110,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
 
     @Override
     public void openRoomChat() {
-        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_3, new RoomChatFragment(), "RoomChat").addToBackStack("RoomChat").commit();
+        navBottom.setVisibility(View.GONE);
+        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_3, new RoomChatFragment(context, navBottom), "RoomChat").addToBackStack("RoomChat").commit();
     }
 }

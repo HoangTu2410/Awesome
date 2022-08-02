@@ -44,6 +44,7 @@ public class MainFragment extends Fragment implements MainInterface{
     public MainFragment() {
     }
 
+
     public MainFragment(Context context) {
         this.context = context;
     }
@@ -59,7 +60,7 @@ public class MainFragment extends Fragment implements MainInterface{
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
 
-        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId), "message").addToBackStack("message").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId, nav_bottom), "message").addToBackStack("message").commit();
 
         searchView.setOnClickListener(searchListener);
 
@@ -87,7 +88,7 @@ public class MainFragment extends Fragment implements MainInterface{
                     hideBlock();
                     search_title.setText(R.string.search_message_hint);
                     id_nav = 1;
-                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId)).addToBackStack(null).commit();
+                    getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment(context, UId, nav_bottom)).addToBackStack(null).commit();
                     return true;
                 case R.id.friend_view:
                     hideBlock();

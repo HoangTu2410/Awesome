@@ -52,6 +52,10 @@ public class MessagePresenter {
                 }
                 recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+                ItemClickSupport.addTo(recyclerView).setOnItemClickListener(((recyclerView1, position, v) -> {
+                    messageInterface.openRoomChat();
+                }));
             }
 
             @Override
