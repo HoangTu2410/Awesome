@@ -1,16 +1,29 @@
 package com.rikkei.awesome.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.type.DateTime;
 import com.google.type.DateTimeOrBuilder;
 import com.rikkei.awesome.R;
@@ -23,16 +36,19 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
 
     Context context;
     List<RoomChat> listFriend;
+    List<User> listUser;
 
-    public RoomChatAdapter(Context context, List<RoomChat> listFriend) {
+    public RoomChatAdapter(Context context, List<RoomChat> listFriend, List<User> listUser) {
         this.context = context;
         this.listFriend = listFriend;
+        this.listUser =listUser;
     }
 
     @NonNull
@@ -44,20 +60,15 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
 
-        FirebaseQuery.getUser(listFriend.get(position).getSendBy(), new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                holder.tv_ten_banbe.setText(user.getFullName());
-            }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        User user = new User();
+        user.setFullName();
+        holder.tv_ten_banbe.setText(user.getFullName());
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsRef = storage.getReferenceFromUrl(user.getAvatar());
+        Glide.with(context).load(gsRef).into(holder.img_avatar);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                holder.tv_ten_banbe.setText("Nguoi dung vo danh");
-            }
-        });
-
-        holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
+        //holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
 
         holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
 
@@ -78,11 +89,17 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
             holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
         }
 
+
+
     }
 
     @Override
     public int getItemCount() {
         return listFriend.size();
+    }
+
+    void setAvatar(String path){
+
     }
 
 }

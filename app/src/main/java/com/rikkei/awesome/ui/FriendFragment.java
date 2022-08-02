@@ -37,21 +37,21 @@ public class FriendFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_child_friend_list, container, false);
         Init();
 
-        ArrayList<User> arrayList = new ArrayList<>();
-        arrayList.add(new User("Nguyen Van A"));
-        arrayList.add(new User("Trinh Van A"));
-        arrayList.add(new User("Tu Van A"));
-        arrayList.add(new User("Nga Van A"));
-        arrayList.add(new User("Ba Van A"));
-        arrayList.add(new User("Bo Van A"));
-        arrayList.add(new User("Nguyen Van A"));
-        arrayList.add(new User("An Van A"));
-        arrayList.add(new User("Kacr Van A"));
-        arrayList.add(new User("Virl Van A"));
-        arrayList.add(new User("Nuhn Van A"));
-        arrayList.add(new User("Tin Van A"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new FriendAdapter(context, arrayList));
+//        ArrayList<User> arrayList = new ArrayList<>();
+//        arrayList.add(new User("Nguyen Van A"));
+//        arrayList.add(new User("Trinh Van A"));
+//        arrayList.add(new User("Tu Van A"));
+//        arrayList.add(new User("Nga Van A"));
+//        arrayList.add(new User("Ba Van A"));
+//        arrayList.add(new User("Bo Van A"));
+//        arrayList.add(new User("Nguyen Van A"));
+//        arrayList.add(new User("An Van A"));
+//        arrayList.add(new User("Kacr Van A"));
+//        arrayList.add(new User("Virl Van A"));
+//        arrayList.add(new User("Nuhn Van A"));
+//        arrayList.add(new User("Tin Van A"));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//        recyclerView.setAdapter(new FriendAdapter(context, arrayList));
 
         return view;
     }

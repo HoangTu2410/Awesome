@@ -21,6 +21,7 @@ import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.adapter.RoomChatAdapter;
 import com.rikkei.awesome.model.RoomChat;
+import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
 import com.rikkei.awesome.utils.FirebaseQuery;
 import com.rikkei.awesome.utils.ItemClickSupport;
@@ -36,6 +37,7 @@ public class MessagePresenter {
     private MessageInterface messageInterface;
     private Context context;
     private List<RoomChat> roomChats = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public MessagePresenter(MessageInterface messageInterface, Context context) {
         this.messageInterface = messageInterface;
@@ -62,11 +64,13 @@ public class MessagePresenter {
         FirebaseQuery.getListRoomChatLast(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                roomChats.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
                     roomChats.add(roomChat);
                 }
-                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
+                getListUser();
+                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, users));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             }
 
@@ -79,6 +83,24 @@ public class MessagePresenter {
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(((recyclerView1, position, v) -> {
             messageInterface.openRoomChat();
         }));
+    }
+
+    public void getListUser(){
+        FirebaseQuery.getListUser(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                users.clear();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    User user = dataSnapshot.getValue(User.class);
+                    users.add(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

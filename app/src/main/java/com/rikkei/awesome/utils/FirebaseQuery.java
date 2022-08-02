@@ -1,7 +1,9 @@
 package com.rikkei.awesome.utils;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -39,6 +41,12 @@ public class FirebaseQuery<T> {
     public static void getUser(String Uid, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(USERS);
-        myRef.orderByKey().equalTo(Uid).addValueEventListener(valueEventListener);
+        myRef.orderByKey().startAt(Uid).addValueEventListener(valueEventListener);
+    }
+
+    public static void getListUser(ValueEventListener valueEventListener){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(USERS);
+        myRef.orderByKey().addValueEventListener(valueEventListener);
     }
 }

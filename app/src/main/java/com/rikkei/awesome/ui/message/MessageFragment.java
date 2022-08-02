@@ -111,6 +111,6 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void openRoomChat() {
         navBottom.setVisibility(View.GONE);
-        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_3, new RoomChatFragment(context, navBottom), "RoomChat").addToBackStack("RoomChat").commit();
+        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_3, new RoomChatFragment(context, navBottom, UId), "RoomChat").addToBackStack("RoomChat").commit();
     }
 }
