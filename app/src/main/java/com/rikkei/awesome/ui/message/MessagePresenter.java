@@ -41,8 +41,8 @@ public class MessagePresenter {
         this.context = context;
     }
 
-    public void getListRoom(RecyclerView recyclerView) {
-        FirebaseQuery.getListRoomChat(FirebaseQuery.USERNAME, new ValueEventListener() {
+    public void getListRoom(RecyclerView recyclerView, String UId) {
+        FirebaseQuery.getListRoomChat(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<RoomChat> roomChats = new ArrayList<>();
@@ -63,6 +63,8 @@ public class MessagePresenter {
                 messageInterface.showListRoomChatFailed();
             }
         });
+
+
 
     }
 

@@ -1,16 +1,24 @@
 package com.rikkei.awesome.adapter;
 
 import android.content.Context;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.type.DateTime;
+import com.google.type.DateTimeOrBuilder;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.RoomChat;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
 
@@ -31,8 +39,25 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
         holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
-        holder.tv_tgian_tin_cuoi.setText(listFriend.get(position).getTime());
         holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
+
+        long ts = Long.parseLong(listFriend.get(position).getTime());
+        long es = System.currentTimeMillis() - ts;
+
+        if ((System.currentTimeMillis() - es) <= 172800000){
+            if ((System.currentTimeMillis() - es) <= 86400000){
+                Date date = new Date(es);
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
+            } else
+            holder.tv_tgian_tin_cuoi.setText(R.string.yesterday);
+        } else if ((System.currentTimeMillis() - es) > 86400000){
+            Date date = new Date(es);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
+        }
+
     }
 
     @Override

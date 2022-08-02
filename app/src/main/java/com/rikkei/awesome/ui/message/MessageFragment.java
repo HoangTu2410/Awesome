@@ -69,7 +69,7 @@ public class MessageFragment extends Fragment implements MessageInterface{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        messagePresenter.getListRoom(recyclerView);
+        messagePresenter.getListRoom(recyclerView, UId);
 //        List<RoomChat> roomChats = new ArrayList<>();
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference myRef = database.getReference("room_chat");

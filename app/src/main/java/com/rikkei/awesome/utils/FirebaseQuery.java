@@ -1,9 +1,11 @@
 package com.rikkei.awesome.utils;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rikkei.awesome.model.User;
 
 public class FirebaseQuery<T> {
 
@@ -15,8 +17,18 @@ public class FirebaseQuery<T> {
     public static void getListRoomChat(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(ROOMCHATS);
-        myRef.orderByKey().addValueEventListener(valueEventListener);
+        myRef.orderByKey().startAt(username).addValueEventListener(valueEventListener);//get all roomchat
     }
+//    public static void getListRoomChatLast(String username, ValueEventListener valueEventListener){
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference(ROOMCHATS);
+//        myRef.orderByKey().startAt(username).addValueEventListener(valueEventListener);//get all roomchat
+//    }
+//
+//    public static void getListRoomChat(String username, ValueEventListener valueEventListener){
+//        getListRoomChatFirst(username, valueEventListener);
+//        getListRoomChatLast(username, valueEventListener);
+//    }
 
     public static void getListMessage(String path, ChildEventListener childEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -25,7 +37,7 @@ public class FirebaseQuery<T> {
     }
 
     public static void getUser(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(USERS);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        //User user = auth.getCurrentUser().
     }
 }

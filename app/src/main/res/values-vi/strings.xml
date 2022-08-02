@@ -26,4 +26,5 @@
     <string name="getListFailed">Lấy danh sách thất bại! Hãy thử lại sau!</string>
     <string name="phoneNo">SỐ ĐIỆN THOẠI</string>
     <string name="dob">NGÀY SINH</string>
+    <string name="yesterday">Hôm qua</string>
 </resources>
