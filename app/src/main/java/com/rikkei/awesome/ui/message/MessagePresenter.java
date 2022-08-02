@@ -35,6 +35,7 @@ public class MessagePresenter {
 
     private MessageInterface messageInterface;
     private Context context;
+    private List<RoomChat> roomChats = new ArrayList<>();
 
     public MessagePresenter(MessageInterface messageInterface, Context context) {
         this.messageInterface = messageInterface;
@@ -42,30 +43,42 @@ public class MessagePresenter {
     }
 
     public void getListRoom(RecyclerView recyclerView, String UId) {
-        FirebaseQuery.getListRoomChat(UId, new ValueEventListener() {
+//        FirebaseQuery.getListRoomChatFirst(UId, new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+//                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
+//                    roomChats.add(roomChat);
+//                }
+//                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
+//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                messageInterface.showListRoomChatFailed();
+//            }
+//        }); //get all roomchat start with Uid //lost query
+        FirebaseQuery.getListRoomChatLast(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<RoomChat> roomChats = new ArrayList<>();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
                     roomChats.add(roomChat);
                 }
                 recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-                ItemClickSupport.addTo(recyclerView).setOnItemClickListener(((recyclerView1, position, v) -> {
-                    messageInterface.openRoomChat();
-                }));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 messageInterface.showListRoomChatFailed();
             }
-        });
+        });//get all roomchat end with Uid
 
-
-
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(((recyclerView1, position, v) -> {
+            messageInterface.openRoomChat();
+        }));
     }
 
 }
