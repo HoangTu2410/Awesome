@@ -69,7 +69,7 @@ public class MessagePresenter {
                     RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
                     roomChats.add(roomChat);
                 }
-                getListUser();
+                //getListUser();
                 recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, users));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             }

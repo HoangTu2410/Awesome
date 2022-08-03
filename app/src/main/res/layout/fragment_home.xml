@@ -109,7 +109,8 @@
         android:background="@drawable/background_bottom_navigation"
         android:elevation="8dp"
         app:itemIconTint="@drawable/bottom_navigation_color_selector"
-        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@drawable/bottom_navigation_color_selector"
+        app:labelVisibilityMode="auto"
         app:menu="@menu/bottom_navigation_menu" />
 
     <RelativeLayout

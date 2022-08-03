@@ -24,7 +24,7 @@ public class FirebaseQuery<T> {
     public static void getListRoomChatLast(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(ROOMCHATS);
-        myRef.orderByKey().endAt(username.concat("\uf8ff")).addValueEventListener(valueEventListener);//get all roomchat
+        myRef.orderByKey().addValueEventListener(valueEventListener);//get all roomchat
     }
 
     public static void getListRoomChat(String username, ValueEventListener valueEventListener){

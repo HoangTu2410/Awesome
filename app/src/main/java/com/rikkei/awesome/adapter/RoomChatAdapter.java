@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,36 +61,34 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        User user = new User();
-        user.setFullName();
-        holder.tv_ten_banbe.setText(user.getFullName());
+//        FirebaseAuth.getInstance().getCurrentUser().
+//        User user = new User();
+//        user.setFullName();
+//        holder.tv_ten_banbe.setText(user.getFullName());
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReferenceFromUrl(user.getAvatar());
+        StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
         Glide.with(context).load(gsRef).into(holder.img_avatar);
 
-        //holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
+        holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
 
         holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
 
         long ts = Long.parseLong(listFriend.get(position).getTime());
         long es = System.currentTimeMillis() - ts;
 
-        if ((System.currentTimeMillis() - es) <= 172800000){
-            if ((System.currentTimeMillis() - es) <= 86400000){
-                Date date = new Date(es);
+        if ((System.currentTimeMillis() - ts) <= 172800000){
+            if ((System.currentTimeMillis() - ts) <= 86400000){
+                Date date = new Date(ts);
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                 holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
             } else
             holder.tv_tgian_tin_cuoi.setText(R.string.yesterday);
-        } else if ((System.currentTimeMillis() - es) > 86400000){
-            Date date = new Date(es);
+        } else if ((System.currentTimeMillis() - ts) > 172800000){
+            Date date = new Date(ts);
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
         }
-
-
 
     }
 
