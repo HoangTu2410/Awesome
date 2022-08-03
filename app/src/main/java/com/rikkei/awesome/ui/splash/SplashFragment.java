@@ -1,8 +1,6 @@
 package com.rikkei.awesome.ui.splash;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.ui.login.LoginFragment;
-import com.rikkei.awesome.ui.main.MainFragment;
+import com.rikkei.awesome.ui.home.HomeFragment;
 
 public class SplashFragment extends Fragment implements SplashInterface{
 
@@ -23,8 +20,8 @@ public class SplashFragment extends Fragment implements SplashInterface{
     private FragmentTransaction transaction;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onStart() {
+        super.onStart();
         transaction = getParentFragmentManager().beginTransaction();
         mSplashPresenter = new SplashPresenter(this);
         mSplashPresenter.checkLogin();
@@ -38,7 +35,7 @@ public class SplashFragment extends Fragment implements SplashInterface{
 
     @Override
     public void isLogin() {
-        transaction.replace(R.id.home_container,new MainFragment(),"fragment_main");
+        transaction.replace(R.id.home_container,new HomeFragment(),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

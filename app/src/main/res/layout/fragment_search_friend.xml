@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    tools:context=".Fragments.HomeFragment">
+    android:background="@android:color/transparent">
 
     <View
         android:layout_width="match_parent"
@@ -51,7 +50,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="155dp"
-            android:background="@drawable/search_bar_background"
+            android:background="@drawable/background_search_view"
             android:queryHint="Tìm kiếm bạn bè" />
 
         <TextView
@@ -88,15 +87,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
+
         <ImageView
             android:id="@+id/icon_search_no_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_no_result"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="280dp"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="280dp"
+            android:src="@drawable/ic_search_no_result" />
 
         <TextView
             android:layout_width="wrap_content"

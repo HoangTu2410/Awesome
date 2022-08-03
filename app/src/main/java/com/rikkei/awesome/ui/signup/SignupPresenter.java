@@ -1,14 +1,21 @@
 package com.rikkei.awesome.ui.signup;
 
+import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.model.User;
 
@@ -52,8 +59,17 @@ public class SignupPresenter {
         String dob = new SimpleDateFormat("dd/MM/yyyy").format(date);
         user.setDob(dob);
         user.setPhoneNumber("88888888");
-        user.setAvatar("default_url");
-        myRef.child(user.getId()).setValue(user);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference pathReference = storage.getReference().child("images/avatars/default_avatar.png");
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String defaultAvatar = uri.toString();
+                user.setAvatar(defaultAvatar);
+                myRef.child(user.getId()).setValue(user);
+            }
+        });
     }
 
     public boolean checkValidateEmail(String email) {

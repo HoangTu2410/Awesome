@@ -1,7 +1,5 @@
 package com.rikkei.awesome.ui.signup;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.User;
-import com.rikkei.awesome.ui.main.MainFragment;
+import com.rikkei.awesome.ui.home.HomeFragment;
 
 public class SignupFragment extends Fragment implements SignupInterface{
 
@@ -173,10 +171,12 @@ public class SignupFragment extends Fragment implements SignupInterface{
                 String email = txtEmail.getEditText().getText().toString().trim();
                 String password = txtPassword.getEditText().getText().toString().trim();
                 if (!mSignupPresenter.checkValidateEmail(email)) {
+                    txtAlert.setVisibility(TextView.VISIBLE);
                     txtAlert.setText("Email incorrect!");
                     return;
                 }
                 if (!mSignupPresenter.checkValidatePassword(password)) {
+                    txtAlert.setVisibility(TextView.VISIBLE);
                     txtAlert.setText("Password incorrect!");
                     return;
                 }
@@ -193,13 +193,14 @@ public class SignupFragment extends Fragment implements SignupInterface{
     @Override
     public void signupSuccessful() {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(),"fragment_main");
+        transaction.replace(R.id.home_container,new HomeFragment(),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }
 
     @Override
     public void signupFailed() {
+        txtAlert.setVisibility(TextView.VISIBLE);
         txtAlert.setText("Register failed!");
     }
 }
