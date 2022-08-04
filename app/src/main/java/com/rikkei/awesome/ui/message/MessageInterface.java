@@ -10,5 +10,5 @@ import java.util.ArrayList;
 public interface MessageInterface {
     void showListRoomChat(RecyclerView recyclerView);
     void showListRoomChatFailed();
-    void openRoomChat();
+    void openRoomChat(String roomID);
 }

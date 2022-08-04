@@ -41,8 +41,9 @@ import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RoomChatFragment extends Fragment {
+public class RoomChatFragment extends Fragment implements RoomChatInterface{
 
+    RoomChatPresenter roomChatPresenter;
     ImageView btnBack, btn_sent_message;
     TextInputLayout txt_send_message;
     CircleImageView avatar;
@@ -52,11 +53,12 @@ public class RoomChatFragment extends Fragment {
     FirebaseRecyclerAdapter<Message, RCViewHolder> firebaseRecyclerAdapter;
     Context context;
     List<Message> messageList = new ArrayList<>();
-    String Uid;
+    String Uid, roomID;
 
-    public RoomChatFragment(Context context, BottomNavigationView navBottom, String Uid){
+    public RoomChatFragment(Context context, BottomNavigationView navBottom, String roomID, String Uid){
         this.navBottom = navBottom;
         this.context = context;
+        this.roomID = roomID;
         this.Uid = Uid;
     }
 
@@ -65,6 +67,7 @@ public class RoomChatFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_room_chat, container, false);
+        roomChatPresenter = new RoomChatPresenter(context, this, roomID, Uid);
         return view;
     }
 
@@ -127,40 +130,7 @@ public class RoomChatFragment extends Fragment {
 //            }
 //        };
 
-        FirebaseQuery.getListMessage("room2", new ChildEventListener() {
 
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Message message = snapshot.getValue(Message.class);
-                messageList.add(message);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //messageList.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Message message = dataSnapshot.getValue(Message.class);
-                    messageList.add(message);
-                }
-
-                recyclerView.setAdapter(new MessageAdapter(context, messageList, Uid));
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
          LinearLayoutManager manager = new LinearLayoutManager(context);
          manager.setStackFromEnd(true);//đặt hướng stack từ dưới lên trên

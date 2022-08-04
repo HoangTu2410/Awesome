@@ -42,7 +42,7 @@ public class MessagePresenter {
     private MessageInterface messageInterface;
     private Context context;
     private List<RoomChat> roomChats = new ArrayList<>();
-    private User currentUser = new User();
+    private User currentUser;
     private List<Member> members = new ArrayList<>();
 
 
@@ -52,27 +52,20 @@ public class MessagePresenter {
     }
 
     public void getListRoom(RecyclerView recyclerView, String UId) {
-//        FirebaseQuery.getListRoomChatFirst(UId, new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
-//                    roomChats.add(roomChat);
-//                }
-//                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats));
-//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                messageInterface.showListRoomChatFailed();
-//            }
-//        }); //get all roomchat start with Uid //lost query
         FirebaseQuery.getUser(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                currentUser = snapshot.getValue(User.class);
+                GenericTypeIndicator<HashMap<String, User>> objGTI = new GenericTypeIndicator<HashMap<String, User>>() {
+                    @Override
+                    public boolean equals(@Nullable Object obj) {
+                        return super.equals(obj);
+                    }
+                };
+                Map<String, User> objHM = snapshot.getValue(objGTI);
+                final List<User> objAL = new ArrayList<>(objHM.values());
+                for (User tmp : objAL) {
+                    if (tmp.getId().equals(UId)) currentUser = tmp; //get all information of current user
+                }
             }
 
             @Override
@@ -85,12 +78,17 @@ public class MessagePresenter {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                members.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Member member = dataSnapshot.getValue(Member.class);
-                    if (member.getUser1() == currentUser.getId() || member.getUser2() == currentUser.getId())
-                    members.add(member);
-                }
+                GenericTypeIndicator<HashMap<String, Member>> objGTI = new GenericTypeIndicator<HashMap<String, Member>>() {
+                    @Override
+                    public boolean equals(@Nullable Object obj) {
+                        return super.equals(obj);
+                    }
+                };
+                Map<String, Member> objHM = snapshot.getValue(objGTI);
+                final List<Member> objAL = new ArrayList<>(objHM.values());
+                for (Member tmp: objAL)
+                    if (tmp.getUser1().equals(currentUser.getId())||tmp.getUser2().equals(currentUser.getId()))
+                        members.add(tmp);
              }
 
 
@@ -102,17 +100,18 @@ public class MessagePresenter {
         FirebaseQuery.getListRoomChatLast(UId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                roomChats.clear();
-                if (snapshot.exists()){
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        RoomChat roomChat = dataSnapshot.getValue(RoomChat.class);
-                        for (Member member : members) {
-                            if (member.getId() == roomChat.getId()) roomChats.add(roomChat);
-                        }
-
+                GenericTypeIndicator<HashMap<String, RoomChat>> objGTI = new GenericTypeIndicator<HashMap<String, RoomChat>>() {
+                    @Override
+                    public boolean equals(@Nullable Object obj) {
+                        return super.equals(obj);
                     }
-                }
-                //getListUser();
+                };
+                Map<String, RoomChat> objHM = snapshot.getValue(objGTI);
+                final List<RoomChat> objAL = new ArrayList<>(objHM.values());
+                for (RoomChat tmp: objAL)
+                    for (Member mem: members)
+                        if (tmp.getId().equals(mem.getId()))
+                            roomChats.add(tmp);
 
                 recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, members));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -125,8 +124,11 @@ public class MessagePresenter {
         });//get all roomchat end with Uid
 
 
-        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(((recyclerView1, position, v) -> {
-            messageInterface.openRoomChat();
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener((new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView1, int position, View v) {
+                messageInterface.openRoomChat(roomChats.get(position).getId());
+            }
         }));
     }
 
