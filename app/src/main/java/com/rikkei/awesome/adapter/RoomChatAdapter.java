@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.type.DateTime;
 import com.google.type.DateTimeOrBuilder;
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.Member;
 import com.rikkei.awesome.model.RoomChat;
 import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.utils.FirebaseQuery;
@@ -44,9 +45,9 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
 
     Context context;
     List<RoomChat> listFriend;
-    List<User> listUser;
+    List<Member> listUser;
 
-    public RoomChatAdapter(Context context, List<RoomChat> listFriend, List<User> listUser) {
+    public RoomChatAdapter(Context context, List<RoomChat> listFriend, List<Member> listMember) {
         this.context = context;
         this.listFriend = listFriend;
         this.listUser =listUser;
@@ -69,7 +70,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
         StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
         Glide.with(context).load(gsRef).into(holder.img_avatar);
 
-        holder.tv_ten_banbe.setText(listFriend.get(position).getSendBy());
+        holder.tv_ten_banbe.setText(listFriend.get(position).getId());
 
         holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
 

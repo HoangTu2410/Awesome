@@ -12,6 +12,7 @@ import com.rikkei.awesome.model.User;
 public class FirebaseQuery<T> {
 
     public static final String USERS = "users";
+    public static final String MEMBERS = "member";
     public static final String ROOMCHATS = "room_chat";
     public static final String MESSAGES = "message_text";
     public static String USERNAME = "";
@@ -19,7 +20,7 @@ public class FirebaseQuery<T> {
     public static void getListRoomChatFirst(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(ROOMCHATS);
-        myRef.orderByKey().startAt(username).addValueEventListener(valueEventListener);//get all roomchat
+        myRef.orderByChild("id").addValueEventListener(valueEventListener);//get all roomchat
     }
     public static void getListRoomChatLast(String username, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -41,12 +42,18 @@ public class FirebaseQuery<T> {
     public static void getUser(String Uid, ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(USERS);
-        myRef.orderByKey().startAt(Uid).addValueEventListener(valueEventListener);
+        myRef.orderByChild("id").equalTo(Uid).addListenerForSingleValueEvent(valueEventListener);
     }
 
     public static void getListUser(ValueEventListener valueEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(USERS);
-        myRef.orderByKey().addValueEventListener(valueEventListener);
+        myRef.orderByChild("id").addValueEventListener(valueEventListener);
+    }
+
+    public static void getListMember(String Uid, ValueEventListener valueEventListener){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(MEMBERS);
+        myRef.addValueEventListener(valueEventListener);
     }
 }

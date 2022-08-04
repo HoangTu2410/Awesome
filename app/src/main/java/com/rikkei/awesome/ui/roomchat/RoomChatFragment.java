@@ -20,12 +20,24 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.adapter.MessageAdapter;
 import com.rikkei.awesome.adapter.RCViewHolder;
 import com.rikkei.awesome.model.Message;
+import com.rikkei.awesome.utils.FirebaseQuery;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,6 +51,7 @@ public class RoomChatFragment extends Fragment {
     BottomNavigationView navBottom;
     FirebaseRecyclerAdapter<Message, RCViewHolder> firebaseRecyclerAdapter;
     Context context;
+    List<Message> messageList = new ArrayList<>();
     String Uid;
 
     public RoomChatFragment(Context context, BottomNavigationView navBottom, String Uid){
@@ -71,31 +84,89 @@ public class RoomChatFragment extends Fragment {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message_text");
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("message_text");
+//
+//        FirebaseRecyclerOptions<Message> options = new FirebaseRecyclerOptions.Builder<Message>()
+//                .setQuery(myRef.child("room2"), Message.class).build();
+//
+//         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Message, RCViewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull RCViewHolder holder, int position, @NonNull Message model) {
+//                if (Objects.equals(model.getSentby(), Uid)){
+//                    holder.message_user.setText(model.getContent());
+//                    holder.message_friend.setVisibility(View.GONE);
+//                    holder.avatar.setVisibility(View.GONE);
+//                } else {
+//                    holder.message_friend.setText(model.getContent());
+//                    holder.message_user.setVisibility(View.GONE);
+//                    holder.txt_time_user.setVisibility(View.GONE);
+//                }
+//                long ts = Long.parseLong(model.getTime());
+//
+//                if ((System.currentTimeMillis() - ts) <= 172800000){
+//                    if ((System.currentTimeMillis() - ts) <= 86400000){
+//                        Date date = new Date(ts);
+//                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+//                        holder.txt_time_friend.setText(sdf.format(date));
+//                    } else
+//                        holder.txt_time_friend.setText(R.string.yesterday);
+//                } else if ((System.currentTimeMillis() - ts) > 172800000){
+//                    Date date = new Date(ts);
+//                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//                    holder.txt_time_friend.setText(sdf.format(date));
+//                }
+//                //holder.txt_time_friend.setText(model.getTime());
+//            }
+//
+//            @NonNull
+//            @Override
+//            public RCViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                return new RCViewHolder(LayoutInflater.from(context).inflate(R.layout.chat_item, parent, false));
+//            }
+//        };
 
-        FirebaseRecyclerOptions<Message> options = new FirebaseRecyclerOptions.Builder<Message>()
-                .setQuery(myRef.child("room1"), Message.class).build();
+        FirebaseQuery.getListMessage("room2", new ChildEventListener() {
 
-         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Message, RCViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull RCViewHolder holder, int position, @NonNull Message model) {
-                holder.message_friend.setText(model.getContent());
-                holder.txt_time_friend.setText(model.getTime());
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Message message = snapshot.getValue(Message.class);
+                messageList.add(message);
             }
 
-            @NonNull
             @Override
-            public RCViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new RCViewHolder(LayoutInflater.from(context).inflate(R.layout.chat_item, parent, false));
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //messageList.clear();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Message message = dataSnapshot.getValue(Message.class);
+                    messageList.add(message);
+                }
+
+                recyclerView.setAdapter(new MessageAdapter(context, messageList, Uid));
             }
-        };
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
          LinearLayoutManager manager = new LinearLayoutManager(context);
-         manager.setStackFromEnd(true);
+         manager.setStackFromEnd(true);//đặt hướng stack từ dưới lên trên
 
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+        //recyclerView.setAdapter(firebaseRecyclerAdapter);
 
     }
 
@@ -110,6 +181,6 @@ public class RoomChatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseRecyclerAdapter.startListening();
+        //firebaseRecyclerAdapter.startListening();
     }
 }
