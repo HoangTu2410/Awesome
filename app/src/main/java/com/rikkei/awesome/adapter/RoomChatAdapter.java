@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,8 +35,10 @@ import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.utils.FirebaseQuery;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -47,16 +50,18 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     Context context;
     List<RoomChat> listRoomChat;
     List<Member> listMember;
-    List<User> listUser;
+    List<User> listUser ;
     String Uid;
 
     public RoomChatAdapter(Context context, List<RoomChat> listRoomChat, List<Member> listMember, List<User> listUser, String Uid) {
         this.context = context;
         this.listRoomChat = listRoomChat;
-        this.listUser =listUser;
         this.listMember = listMember;
         this.Uid =Uid;
+        this.listUser = listUser;
     }
+
+
 
     @NonNull
     @Override
@@ -71,23 +76,26 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
         StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
         Glide.with(context).load(gsRef).into(holder.img_avatar);
 
-        //holder.tv_ten_banbe.setText(listFriend.get(position).getId());
+        String name = "";
         for (Member member: listMember){
-            if (listRoomChat.get(position).getId().equals(member.getId()))
+            if (member.getId().equals(listRoomChat.get(position).getId()))
                 if (member.getUser1().equals(Uid)){
                     for (User user: listUser)
                         if (user.getId().equals(member.getUser2()))
-                            holder.tv_ten_banbe.setText(user.getFullName());
+                            name = user.getFullName();
                 } else {
                     for (User user: listUser)
                         if (user.getId().equals(member.getUser1()))
-                            holder.tv_ten_banbe.setText(user.getFullName());
+                            name = user.getFullName();
                 }
 
         }
+        holder.tv_ten_banbe.setText(name);
 
-        holder.tv_tin_cuoi.setText(listRoomChat.get(position).getLastMessage());
-
+        if (listRoomChat.get(position).getSendBy().equals(Uid))
+            holder.tv_tin_cuoi.setText(context.getString(R.string.tag) + listRoomChat.get(position).getLastMessage());
+        else
+            holder.tv_tin_cuoi.setText(listRoomChat.get(position).getLastMessage());
         long ts = Long.parseLong(listRoomChat.get(position).getTime());
 
         if (Math.abs(System.currentTimeMillis() - ts) <= 172800000){

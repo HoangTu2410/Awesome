@@ -93,7 +93,8 @@ public class RoomChatPresenter {
                     if (tmp.getId().equals(roomID))
                         members.add(tmp);
 
-                if (!members.get(0).getId().equals(Uid)) Fid = members.get(0).getUser2();
+                if (members.get(0).getUser1().equals(Uid)) Fid = members.get(0).getUser2();
+                else Fid = members.get(0).getUser1();
             }
 
             @Override
@@ -114,8 +115,8 @@ public class RoomChatPresenter {
                 if (objHM != null){
                     final List<User> objAL = new ArrayList<>(objHM.values());
                     for (User tmp : objAL) {
-                        if (tmp.getId().equals(Fid)) user2 = tmp;
-                        roomChatInterface.setTitle(user2.getFullName());
+                        if (tmp.getId().equals(Fid)) {user2 = tmp;
+                            roomChatInterface.setTitle(user2.getFullName());}
                         if (tmp.getId().equals(Uid)) user1 = tmp;
                     }
                 }
@@ -131,29 +132,6 @@ public class RoomChatPresenter {
 
     }
 
-//    public void setUser1(){
-//        FirebaseQuery.getUser(Uid, new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                GenericTypeIndicator<HashMap<String, User>> objGTI = new GenericTypeIndicator<HashMap<String, User>>() {
-//                    @Override
-//                    public boolean equals(@Nullable Object obj) {
-//                        return super.equals(obj);
-//                    }
-//                };
-//                Map<String, User> objHM = snapshot.getValue(objGTI);
-//                final List<User> objAL = new ArrayList<>(objHM.values());
-//                for (User tmp : objAL) {
-//                    if (tmp.getId().equals(Uid)) user1 = tmp; //get all information of current user
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
 
     public void sendMessage(String text){
         FirebaseQuery.sendMessage(roomID, text, Uid, System.currentTimeMillis(), new DatabaseReference.CompletionListener() {

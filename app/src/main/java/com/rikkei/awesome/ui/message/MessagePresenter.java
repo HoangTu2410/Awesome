@@ -2,9 +2,7 @@ package com.rikkei.awesome.ui.message;
 
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,30 +10,21 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.rikkei.awesome.MainActivity;
-import com.rikkei.awesome.R;
 import com.rikkei.awesome.adapter.RoomChatAdapter;
 import com.rikkei.awesome.model.Member;
 import com.rikkei.awesome.model.RoomChat;
 import com.rikkei.awesome.model.User;
-import com.rikkei.awesome.ui.roomchat.RoomChatFragment;
 import com.rikkei.awesome.utils.FirebaseQuery;
 import com.rikkei.awesome.utils.ItemClickSupport;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MessagePresenter {
 
@@ -53,7 +42,7 @@ public class MessagePresenter {
     }
 
     public void getListRoom(RecyclerView recyclerView, String UId) {
-        FirebaseQuery.getUser(UId, new ValueEventListener() {
+        FirebaseQuery.getListUser( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 GenericTypeIndicator<HashMap<String, User>> objGTI = new GenericTypeIndicator<HashMap<String, User>>() {

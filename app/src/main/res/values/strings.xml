@@ -26,4 +26,5 @@
     <string name="phoneNo">PHONE NUMBER</string>
     <string name="dob">BIRTHDAY</string>
     <string name="yesterday">Yesterday</string>
+    <string name="tag">\"You: \"</string>
 </resources>
