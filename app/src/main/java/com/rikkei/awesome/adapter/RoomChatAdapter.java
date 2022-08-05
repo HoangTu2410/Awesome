@@ -45,13 +45,17 @@ import java.util.TimeZone;
 public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
 
     Context context;
-    List<RoomChat> listFriend;
-    List<Member> listUser;
+    List<RoomChat> listRoomChat;
+    List<Member> listMember;
+    List<User> listUser;
+    String Uid;
 
-    public RoomChatAdapter(Context context, List<RoomChat> listFriend, List<Member> listMember) {
+    public RoomChatAdapter(Context context, List<RoomChat> listRoomChat, List<Member> listMember, List<User> listUser, String Uid) {
         this.context = context;
-        this.listFriend = listFriend;
+        this.listRoomChat = listRoomChat;
         this.listUser =listUser;
+        this.listMember = listMember;
+        this.Uid =Uid;
     }
 
     @NonNull
@@ -67,11 +71,24 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
         StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
         Glide.with(context).load(gsRef).into(holder.img_avatar);
 
-        holder.tv_ten_banbe.setText(listFriend.get(position).getId());
+        //holder.tv_ten_banbe.setText(listFriend.get(position).getId());
+        for (Member member: listMember){
+            if (listRoomChat.get(position).getId().equals(member.getId()))
+                if (member.getUser1().equals(Uid)){
+                    for (User user: listUser)
+                        if (user.getId().equals(member.getUser2()))
+                            holder.tv_ten_banbe.setText(user.getFullName());
+                } else {
+                    for (User user: listUser)
+                        if (user.getId().equals(member.getUser1()))
+                            holder.tv_ten_banbe.setText(user.getFullName());
+                }
 
-        holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
+        }
 
-        long ts = Long.parseLong(listFriend.get(position).getTime());
+        holder.tv_tin_cuoi.setText(listRoomChat.get(position).getLastMessage());
+
+        long ts = Long.parseLong(listRoomChat.get(position).getTime());
 
         if (Math.abs(System.currentTimeMillis() - ts) <= 172800000){
             if (Math.abs(System.currentTimeMillis() - ts) <= 86400000){
@@ -91,7 +108,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
 
     @Override
     public int getItemCount() {
-        return listFriend.size();
+        return listRoomChat.size();
     }
 
     void setAvatar(String path){

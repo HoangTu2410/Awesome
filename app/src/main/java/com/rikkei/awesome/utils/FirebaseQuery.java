@@ -42,7 +42,7 @@ public class FirebaseQuery<T> {
     public static void getListMessage(String path, ChildEventListener childEventListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(MESSAGES).child(path);
-        myRef.addChildEventListener(childEventListener);
+        myRef.orderByChild("time").addChildEventListener(childEventListener);
     }
 
     public static void getUser(String Uid, ValueEventListener valueEventListener){

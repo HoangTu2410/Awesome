@@ -65,6 +65,7 @@ public class MessagePresenter {
                 Map<String, User> objHM = snapshot.getValue(objGTI);
                 final List<User> objAL = new ArrayList<>(objHM.values());
                 for (User tmp : objAL) {
+                    users.add(tmp);
                     if (tmp.getId().equals(UId)) currentUser = tmp; //get all information of current user
                 }
             }
@@ -115,7 +116,7 @@ public class MessagePresenter {
                         if (tmp.getId().equals(mem.getId()))
                             roomChats.add(tmp);
 
-                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, members));
+                recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, members, users, UId));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             }
 
