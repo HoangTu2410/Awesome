@@ -1,6 +1,7 @@
 package com.rikkei.awesome.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,31 +40,52 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RCViewHolder holder, int position) {
-        if (Objects.equals(listMessage.get(position).getSentby(), Uid)){
-                    holder.message_user.setText(listMessage.get(position).getContent());
-                    holder.message_friend.setVisibility(View.GONE);
-                    holder.avatar.setVisibility(View.GONE);
-                } else {
-                    holder.message_friend.setText(listMessage.get(position).getContent());
-                    holder.message_user.setVisibility(View.GONE);
-                    holder.txt_time_user.setVisibility(View.GONE);
-                }
-                long ts = Long.parseLong(listMessage.get(position).getTime());
+        long ts = Long.parseLong(listMessage.get(position).getTime());
+        long ts1 = 0;
+        if (position < listMessage.size() - 1)
+            ts1 = Long.parseLong(listMessage.get(position + 1).getTime());
+        else ts1 = 0;
+        String time = "";
+        if ((System.currentTimeMillis() - ts) <= 172800000){
+            if ((System.currentTimeMillis() - ts) <= 86400000){
+                Date date = new Date(ts);
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                sdf.setTimeZone(TimeZone.getDefault());
+                time = sdf.format(date);
 
-                if ((System.currentTimeMillis() - ts) <= 172800000){
-                    if ((System.currentTimeMillis() - ts) <= 86400000){
-                        Date date = new Date(ts);
-                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                        holder.txt_time_friend.setText(sdf.format(date));
-                    } else
-                        holder.txt_time_friend.setText(R.string.yesterday);
-                } else if ((System.currentTimeMillis() - ts) > 172800000){
-                    Date date = new Date(ts);
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    holder.txt_time_friend.setText(sdf.format(date));
-                }
-                //holder.txt_time_friend.setText(model.getTime());
+            } else
+                time = "Yesterday";
+        } else if ((System.currentTimeMillis() - ts) > 172800000){
+            Date date = new Date(ts);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            time = sdf.format(date);
+        }
+        if (Math.abs(ts - ts1) < 200000){
+            time = "";
+        }
+
+        if (Objects.equals(listMessage.get(position).getSentby(), Uid)){
+            holder.message_user.setText(listMessage.get(position).getContent());
+            holder.message_friend.setVisibility(View.GONE);
+            holder.avatar.setVisibility(View.GONE);
+            holder.txt_time_friend.setVisibility(View.GONE);
+            if (time.equals("")){
+                holder.txt_time_user.setVisibility(View.GONE);
+                holder.message_user.setBackgroundResource(R.drawable.background_messenger_right_center);
+            } else holder.txt_time_user.setText(time);
+        } else {
+            holder.message_friend.setText(listMessage.get(position).getContent());
+            holder.message_user.setVisibility(View.GONE);
+            holder.txt_time_user.setVisibility(View.GONE);
+            if (time.equals("")){
+                holder.txt_time_friend.setVisibility(View.GONE);
+                holder.avatar.setVisibility(View.INVISIBLE);
+                holder.message_friend.setBackgroundResource(R.drawable.background_messenger_left_center);
+            }
+            else holder.txt_time_friend.setText(time);
+        }
+
+        //holder.txt_time_friend.setText(model.getTime());
     }
 
     @Override

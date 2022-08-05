@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 
@@ -62,10 +63,6 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
 
-//        FirebaseAuth.getInstance().getCurrentUser().
-//        User user = new User();
-//        user.setFullName();
-//        holder.tv_ten_banbe.setText(user.getFullName());
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
         Glide.with(context).load(gsRef).into(holder.img_avatar);
@@ -75,17 +72,16 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
         holder.tv_tin_cuoi.setText(listFriend.get(position).getLastMessage());
 
         long ts = Long.parseLong(listFriend.get(position).getTime());
-        long es = System.currentTimeMillis() - ts;
 
-        if ((System.currentTimeMillis() - ts) <= 172800000){
-            if ((System.currentTimeMillis() - ts) <= 86400000){
+        if (Math.abs(System.currentTimeMillis() - ts) <= 172800000){
+            if (Math.abs(System.currentTimeMillis() - ts) <= 86400000){
                 Date date = new Date(ts);
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                sdf.setTimeZone(TimeZone.getDefault());
                 holder.tv_tgian_tin_cuoi.setText(sdf.format(date));
             } else
             holder.tv_tgian_tin_cuoi.setText(R.string.yesterday);
-        } else if ((System.currentTimeMillis() - ts) > 172800000){
+        } else if (Math.abs(System.currentTimeMillis() - ts) > 172800000){
             Date date = new Date(ts);
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             holder.tv_tgian_tin_cuoi.setText(sdf.format(date));

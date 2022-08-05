@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rikkei.awesome.model.Message;
 import com.rikkei.awesome.model.User;
 
+import java.security.acl.Group;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -62,9 +63,9 @@ public class FirebaseQuery<T> {
         myRef.addValueEventListener(valueEventListener);
     }
 
-    public static void sendMessage(String roomId, String text, String userid, long currentTimeMillis, DatabaseReference.CompletionListener completionListener){
+    public static void sendMessage(String roomId, String text, String userid, long currentTimeMillis, DatabaseReference.CompletionListener completionListener, String messID){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRefGroup = database.getReference(MESSAGES).child(roomId);
+        DatabaseReference myRefGroup = database.getReference(ROOMCHATS).child(roomId);
 
         Map<String, Object> writeMes = new HashMap<>();
         writeMes.put("description", "");
@@ -77,6 +78,6 @@ public class FirebaseQuery<T> {
 
         DatabaseReference myRefMes = database.getReference(MESSAGES).child(roomId);
         Message message = new Message(text, Long.toString(currentTimeMillis), userid);
-        myRefMes.push().setValue(message, completionListener);
+        myRefMes.child(messID).setValue(message);
     }
 }

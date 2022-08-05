@@ -11,4 +11,5 @@ public interface MessageInterface {
     void showListRoomChat(RecyclerView recyclerView);
     void showListRoomChatFailed();
     void openRoomChat(String roomID);
+
 }

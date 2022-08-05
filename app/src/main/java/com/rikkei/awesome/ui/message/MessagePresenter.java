@@ -44,6 +44,7 @@ public class MessagePresenter {
     private final List<RoomChat> roomChats = new ArrayList<>();
     private User currentUser;
     private final List<Member> members = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
 
     public MessagePresenter(MessageInterface messageInterface, Context context) {
@@ -108,6 +109,7 @@ public class MessagePresenter {
                 };
                 Map<String, RoomChat> objHM = snapshot.getValue(objGTI);
                 final List<RoomChat> objAL = new ArrayList<>(objHM.values());
+                roomChats.clear();
                 for (RoomChat tmp: objAL)
                     for (Member mem: members)
                         if (tmp.getId().equals(mem.getId()))
@@ -132,8 +134,5 @@ public class MessagePresenter {
         }));
     }
 
-    public Member getMember(int i){
-        return members.get(i);
-    }
 
 }
