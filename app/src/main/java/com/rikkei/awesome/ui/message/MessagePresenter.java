@@ -39,11 +39,11 @@ import java.util.Objects;
 
 public class MessagePresenter {
 
-    private MessageInterface messageInterface;
-    private Context context;
-    private List<RoomChat> roomChats = new ArrayList<>();
+    private final MessageInterface messageInterface;
+    private final Context context;
+    private final List<RoomChat> roomChats = new ArrayList<>();
     private User currentUser;
-    private List<Member> members = new ArrayList<>();
+    private final List<Member> members = new ArrayList<>();
 
 
     public MessagePresenter(MessageInterface messageInterface, Context context) {
@@ -130,6 +130,10 @@ public class MessagePresenter {
                 messageInterface.openRoomChat(roomChats.get(position).getId());
             }
         }));
+    }
+
+    public Member getMember(int i){
+        return members.get(i);
     }
 
 }
