@@ -1,50 +1,36 @@
 package com.rikkei.awesome.adapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.rikkei.awesome.ui.home.friend.AllUserFragment;
 import com.rikkei.awesome.ui.home.friend.ListFriendFragment;
 import com.rikkei.awesome.ui.home.friend.RequestFragment;
 
-public class FriendHomeAdapter extends FragmentStatePagerAdapter {
-    public FriendHomeAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+
+public class FriendHomeAdapter extends FragmentStateAdapter {
+
+    public FriendHomeAdapter(@NonNull Fragment fragment) {
+        super(fragment);
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                ListFriendFragment listFriendFragment = new ListFriendFragment();
-                return listFriendFragment;
+                return new ListFriendFragment();
             case 1:
-                AllUserFragment allUserFragment = new AllUserFragment();
-                return allUserFragment;
+                return new AllUserFragment();
             case 2:
-                RequestFragment requestFragment = new RequestFragment();
-                return requestFragment;
+                return new RequestFragment();
         }
-        return null;
+        return new ListFriendFragment();
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return 3;
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        switch (position){
-            case 0: return "BẠN BÈ";
-            case 1: return "TẤT CẢ";
-            case 2: return "YÊU CẦU";
-        }
-        return null;
     }
 }

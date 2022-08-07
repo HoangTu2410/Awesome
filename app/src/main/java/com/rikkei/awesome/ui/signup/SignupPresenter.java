@@ -59,17 +59,8 @@ public class SignupPresenter {
         String dob = new SimpleDateFormat("dd/MM/yyyy").format(date);
         user.setDob(dob);
         user.setPhoneNumber("88888888");
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference pathReference = storage.getReference().child("images/avatars/default_avatar.png");
-        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                String defaultAvatar = uri.toString();
-                user.setAvatar(defaultAvatar);
-                myRef.child(user.getId()).setValue(user);
-            }
-        });
+        user.setAvatar("images/avatars/default_avatar.png");
+        myRef.child(user.getId()).setValue(user);
     }
 
     public boolean checkValidateEmail(String email) {

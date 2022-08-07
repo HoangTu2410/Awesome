@@ -10,17 +10,17 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.adapter.HomeAdapter;
 
 public class HomeFragment extends Fragment {
 
     private BottomNavigationView nav_bottom;
-    private ViewPager viewPager;
+    private ViewPager2 viewPager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,17 +51,15 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         nav_bottom = view.findViewById(R.id.nav_bottom);
         viewPager = view.findViewById(R.id.fragment_container);
-        HomeAdapter homeAdapter = new HomeAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        HomeAdapter homeAdapter = new HomeAdapter(this);
         viewPager.setAdapter(homeAdapter);
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        viewPager.setUserInputEnabled(false);
 
-            }
-
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                super.onPageSelected(position);
                 switch (position){
                     case 0: nav_bottom.getMenu().findItem(R.id.message_view).setChecked(true);
                         break;
@@ -71,14 +69,9 @@ public class HomeFragment extends Fragment {
                         break;
                 }
             }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
         });
 
-        nav_bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        nav_bottom.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {

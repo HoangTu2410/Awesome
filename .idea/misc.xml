@@ -7,23 +7,44 @@
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_bottom_navigation.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_container.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_messenger_left.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_profile_update.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_search_view.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/background_splash.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/bottom_navigation.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/bottom_navigation_color_selector.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/button.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/button_negative_background.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/button_primary_background.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/checkbox_selector.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_add_friend.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_back_button.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_back_button_white_version.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_button_camera.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_cake.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_checkbox.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_create_message.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_friend.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_friend_choosing.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_global.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_key.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_logout.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_mail.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_megaphone.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_message.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_message_unchoosing.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_next.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_pencil.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_personal.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_personal_choosing.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_phone.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_reuse.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_search.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_search_no_result.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_unchecked.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/ic_user.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable-v24/search_bar_background.xml" value="0.1325" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable/button_cancel_background.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/chat_item_left.xml" value="0.20102564102564102" />
@@ -50,6 +71,12 @@
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_1.xml" value="0.17899543378995433" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_2.xml" value="0.1814814814814815" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_3.xml" value="0.17899543378995433" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_accept_request.xml" value="0.1814814814814815" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_cancel_request.xml" value="0.1814814814814815" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_friend.xml" value="0.1814814814814815" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_message.xml" value="0.1814814814814815" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_received_request.xml" value="0.1814814814814815" />
+        <entry key="..\:/ThucTap/Awesome/app/src/main/res/layout/item_recyclerview_send_request.xml" value="0.1814814814814815" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20102564102564102" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/menu/language_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/ThucTap/Awesome/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1325" />
