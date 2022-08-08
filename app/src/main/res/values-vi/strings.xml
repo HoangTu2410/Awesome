@@ -27,5 +27,8 @@
     <string name="phoneNo">SỐ ĐIỆN THOẠI</string>
     <string name="dob">NGÀY SINH</string>
     <string name="yesterday">Hôm qua</string>
-    <string name="tag">\"Bạn: \"</string>
+    <string name="tag">\Bạn: \</string>
+    <string name="cancel">Huỷ</string>
+    <string name="message_seach_result">Tin nhắn</string>
+    <string name="enter_message">Nhập tin nhắn …</string>
 </resources>

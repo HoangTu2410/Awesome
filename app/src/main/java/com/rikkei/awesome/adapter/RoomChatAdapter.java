@@ -33,6 +33,7 @@ import com.rikkei.awesome.model.Member;
 import com.rikkei.awesome.model.RoomChat;
 import com.rikkei.awesome.model.User;
 import com.rikkei.awesome.utils.FirebaseQuery;
+import com.rikkei.awesome.utils.GlideApp;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,24 +73,33 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
 
+
+
+
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReferenceFromUrl("gs://awesome-chat-aa87a.appspot.com/images/avatars/default_avatar.png");
-        Glide.with(context).load(gsRef).into(holder.img_avatar);
+
+        final long mb = 1024*1024;
 
         String name = "";
         for (Member member: listMember){
             if (member.getId().equals(listRoomChat.get(position).getId()))
                 if (member.getUser1().equals(Uid)){
                     for (User user: listUser)
-                        if (user.getId().equals(member.getUser2()))
-                            name = user.getFullName();
+                        if (user.getId().equals(member.getUser2())){
+                            StorageReference gsRef = storage.getReference(String.valueOf(Uri.parse(user.getAvatar())));
+                            GlideApp.with(context).load(gsRef).into(holder.img_avatar);
+                            name = user.getFullName();}
                 } else {
                     for (User user: listUser)
-                        if (user.getId().equals(member.getUser1()))
-                            name = user.getFullName();
+                        if (user.getId().equals(member.getUser1())){
+                            StorageReference gsRef = storage.getReference(String.valueOf(Uri.parse(user.getAvatar())));
+                            Glide.with(context).load(gsRef).into(holder.img_avatar);
+                            name = user.getFullName();}
                 }
 
         }
+
         holder.tv_ten_banbe.setText(name);
 
         if (listRoomChat.get(position).getSendBy().equals(Uid))

@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.Message;
 import com.rikkei.awesome.model.RoomChat;
+import com.rikkei.awesome.model.User;
+import com.rikkei.awesome.utils.GlideApp;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,11 +29,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
     Context context;
     List<Message> listMessage;
     String Uid;
+    User friend;
 
-    public MessageAdapter(Context context, List<Message> listMessage, String Uid) {
+    public MessageAdapter(Context context, List<Message> listMessage, String Uid, User friend) {
         this.context = context;
         this.listMessage = listMessage;
         this.Uid = Uid;
+        this.friend = friend;
     }
 
     @NonNull
@@ -63,7 +69,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
         if (Math.abs(ts - ts1) < 200000){
             time = "";
         }
-
+        FirebaseStorage database = FirebaseStorage.getInstance();
+        StorageReference myRef = database.getReference(friend.getAvatar());
+        GlideApp.with(context).load(myRef).into(holder.avatar);
         if (Objects.equals(listMessage.get(position).getSentby(), Uid)){
             holder.message_user.setText(listMessage.get(position).getContent());
             holder.message_friend.setVisibility(View.GONE);

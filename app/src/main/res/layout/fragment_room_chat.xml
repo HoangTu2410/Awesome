@@ -78,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/button_2"
                 android:inputType="text"
-                android:hint="Nhập tin nhắn ..."/>
+                android:hint="@string/enter_message"/>
         </com.google.android.material.textfield.TextInputLayout>
         <ImageView
             android:layout_width="24dp"

@@ -22,6 +22,7 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable-v24/button.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable/background_messenger_left_center.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable/background_messenger_right_center.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable/background_picture.xml" value="0.142" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/drawable/button_2.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/activity_main.xml" value="0.15625" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/chat_item.xml" value="0.34375" />
@@ -33,9 +34,14 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_personal.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_register.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_room_chat.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_search_message.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_splash.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/fragment_update_information.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/image_item.xml" value="0.2578125" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/item_recyclerview_1.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/item_recyclerview_2.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/item_recyclerview_3.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/layout/item_recyclerview_4.xml" value="0.34427083333333336" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Awesome_Chat_01/app/src/main/res/menu/language_menu.xml" value="0.29444444444444445" />
       </map>

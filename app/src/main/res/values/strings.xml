@@ -26,5 +26,8 @@
     <string name="phoneNo">PHONE NUMBER</string>
     <string name="dob">BIRTHDAY</string>
     <string name="yesterday">Yesterday</string>
-    <string name="tag">\"You: \"</string>
+    <string name="tag">\You: \</string>
+    <string name="cancel">Cancel</string>
+    <string name="message_seach_result">Message</string>
+    <string name="enter_message">Enter Message …</string>
 </resources>
