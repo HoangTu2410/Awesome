@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -43,68 +44,106 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
-    <RelativeLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txt_name_room_chat"
-        android:background="@drawable/background_container"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="36dp">
-        <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:background="@drawable/button_2"
-            android:src="@drawable/ic_picture"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="12dp"
-            android:id="@+id/btn_picture"/>
-        <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="36dp"
+        android:background="@drawable/background_container">
+
+        <RelativeLayout
+            android:id="@+id/send_component"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_2"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/btn_picture"
-            android:layout_toStartOf="@+id/btn_send_message"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="12dp"
-            android:id="@+id/txt_send_message"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_emoji">
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_list_block"
+            app:layout_constraintBottom_toTopOf="@+id/image_list_block"
+            app:layout_constraintVertical_weight="0.75">
+
+            <ImageButton
+                android:id="@+id/btn_picture"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_2"
+                android:src="@drawable/ic_picture" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_send_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="16dp"
+                android:layout_toStartOf="@+id/btn_send_message"
+                android:layout_toEndOf="@+id/btn_picture"
+                android:background="@drawable/button_2"
+                app:endIconDrawable="@drawable/ic_emoji"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_2"
+                    android:hint="@string/enter_message"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/btn_send_message"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="27dp"
+                android:src="@drawable/ic_send" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/message_list_block"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/send_component"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/message_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/button_2"
-                android:inputType="text"
-                android:hint="@string/enter_message"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_send"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="27dp"
-            android:layout_marginStart="10dp"
-            android:id="@+id/btn_send_message"/>
+                android:paddingTop="20dp" />
+        </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/message_list"
+        <RelativeLayout
+            android:id="@+id/image_list_block"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/txt_send_message"
-            android:layout_alignParentTop="true"
-            android:paddingTop="20dp" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/image_list"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_alignParentBottom="true"
-            android:layout_above="@+id/btn_picture"
-            android:visibility="gone"
-            android:layout_marginStart="2dp"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/send_component"
+            app:layout_constraintVertical_bias="0.8">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_list"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:padding="5dp"
+                android:layout_height="200dp" />
+        </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

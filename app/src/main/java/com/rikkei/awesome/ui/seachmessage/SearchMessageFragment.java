@@ -1,4 +1,4 @@
-package com.rikkei.awesome.ui;
+package com.rikkei.awesome.ui.seachmessage;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,15 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rikkei.awesome.R;
 
 
-public class SearchMessageFragment extends Fragment {
+public class SearchMessageFragment extends Fragment implements SearchMessageInterface{
 
     View view;
     Context context;
     TextView btn_cancel;
+    RecyclerView recyclerView;
     RelativeLayout block_no_results;
 
     public SearchMessageFragment() {
@@ -46,6 +48,7 @@ public class SearchMessageFragment extends Fragment {
     void init(){
         btn_cancel = view.findViewById(R.id.btn_cancel_search_message);
         block_no_results  = view.findViewById(R.id.block_no_results);
+        recyclerView = view.findViewById(R.id.recycler_search);
 
         block_no_results.setVisibility(View.GONE);
     }

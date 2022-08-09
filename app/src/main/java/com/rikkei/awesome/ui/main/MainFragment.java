@@ -25,7 +25,7 @@ import com.rikkei.awesome.ui.FriendListFragment;
 import com.rikkei.awesome.ui.message.MessageFragment;
 import com.rikkei.awesome.ui.PersonalFragment;
 import com.rikkei.awesome.ui.SearchFriendFragment;
-import com.rikkei.awesome.ui.SearchMessageFragment;
+import com.rikkei.awesome.ui.seachmessage.SearchMessageFragment;
 
 public class MainFragment extends Fragment implements MainInterface{
 

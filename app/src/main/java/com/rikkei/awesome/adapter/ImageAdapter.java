@@ -3,6 +3,7 @@ package com.rikkei.awesome.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,11 @@ import com.rikkei.awesome.utils.GlideApp;
 import java.io.File;
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>  {
 
     Context context;
     List<File> listUrlImage;
+    SparseBooleanArray imageStateArray = new SparseBooleanArray();
 
     public ImageAdapter(Context context, List<File> listUrlImage) {
         this.context = context;
@@ -43,13 +45,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return listUrlImage.size();
     }
 
-    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+
+
+    public static class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imgView;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             imgView = itemView.findViewById(R.id.img_picture);
+            imgView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+
+        }
+
+
     }
 }
