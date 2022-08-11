@@ -30,12 +30,21 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
     List<Message> listMessage;
     String Uid;
     User friend;
+    String urlFile;
 
     public MessageAdapter(Context context, List<Message> listMessage, String Uid, User friend) {
         this.context = context;
         this.listMessage = listMessage;
         this.Uid = Uid;
         this.friend = friend;
+    }
+
+    public MessageAdapter(Context context, List<Message> listMessage, String Uid, User friend, String urlFile) {
+        this.context = context;
+        this.listMessage = listMessage;
+        this.Uid = Uid;
+        this.friend = friend;
+        this.urlFile = urlFile;
     }
 
     @NonNull
@@ -57,8 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
                 Date date = new Date(ts);
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 sdf.setTimeZone(TimeZone.getDefault());
-                time = sdf.format(date);
-
+                time = sdf.format(date); //chuyen doi thoi gian
             } else
                 time = "Yesterday";
         } else if ((System.currentTimeMillis() - ts) > 172800000){
@@ -69,10 +77,18 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
         if (Math.abs(ts - ts1) < 200000){
             time = "";
         }
+
         FirebaseStorage database = FirebaseStorage.getInstance();
-        StorageReference myRef = database.getReference(friend.getAvatar());
+        StorageReference myRef = database.getReference(friend.getAvatar()); //dat avatar cho doi phuong
         GlideApp.with(context).load(myRef).into(holder.avatar);
-        if (Objects.equals(listMessage.get(position).getSentby(), Uid)){
+
+        if (Objects.equals(listMessage.get(position).getSentby(), Uid)){//neu tin nhan do nguoi dung gui
+            if (listMessage.get(position).getContent().contains("images/messages/")){ //neu tin nhan co noi dung link anh
+                holder.message_user.setVisibility(View.GONE);
+                holder.img_user.setVisibility(View.VISIBLE);
+                StorageReference imgRef = database.getReference(listMessage.get(position).getContent());
+                GlideApp.with(context).load(imgRef).override(750,500).centerCrop().into(holder.img_user);
+            } else
             holder.message_user.setText(listMessage.get(position).getContent());
             holder.message_friend.setVisibility(View.GONE);
             holder.avatar.setVisibility(View.GONE);
@@ -81,7 +97,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
                 holder.txt_time_user.setVisibility(View.GONE);
                 holder.message_user.setBackgroundResource(R.drawable.background_messenger_right_center);
             } else holder.txt_time_user.setText(time);
-        } else {
+        } else { // neu tin nhan do doi phuong gui
+            if (listMessage.get(position).getContent().contains("images/messages/")){
+                holder.message_friend.setVisibility(View.GONE);
+                holder.img_friend.setVisibility(View.VISIBLE);
+                StorageReference imgRef = database.getReference(listMessage.get(position).getContent());
+                GlideApp.with(context).load(imgRef).override(750,500).centerCrop().into(holder.img_friend);
+            } else
             holder.message_friend.setText(listMessage.get(position).getContent());
             holder.message_user.setVisibility(View.GONE);
             holder.txt_time_user.setVisibility(View.GONE);
@@ -92,8 +114,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RCViewHolder> {
             }
             else holder.txt_time_friend.setText(time);
         }
-
-        //holder.txt_time_friend.setText(model.getTime());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.rikkei.awesome.adapter;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class RCViewHolder extends RecyclerView.ViewHolder {
 
     public RelativeLayout friend_item, user_item;
     public CircleImageView avatar;
+    public ImageView img_user, img_friend;
     public TextView message_friend, message_user, txt_time_friend, txt_time_user;
 
     public RCViewHolder(@NonNull View itemView) {
@@ -26,5 +28,7 @@ public class RCViewHolder extends RecyclerView.ViewHolder {
         message_user = itemView.findViewById(R.id.show_message);
         txt_time_friend = itemView.findViewById(R.id.txt_time_friend_send);
         txt_time_user = itemView.findViewById(R.id.txt_time_user_send);
+        img_friend = itemView.findViewById(R.id.img_friend);
+        img_user = itemView.findViewById(R.id.img_user);
     }
 }

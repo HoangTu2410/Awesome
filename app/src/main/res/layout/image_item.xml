@@ -10,14 +10,17 @@
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:background="@drawable/background_picture"
-        android:padding="2dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/checked_view"
         android:layout_width="30dp"
+        android:checkMarkTintMode="multiply"
+        android:checkMark="@drawable/checkbox_selector"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

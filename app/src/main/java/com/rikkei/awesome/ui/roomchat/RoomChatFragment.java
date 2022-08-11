@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.storage.StorageReference;
 import com.rikkei.awesome.R;
@@ -43,6 +44,7 @@ public class RoomChatFragment extends Fragment implements RoomChatInterface{
     View view;
     BottomNavigationView navBottom;
     Context context;
+    MaterialButton btnSend;
     String Uid, roomID, friendName;
 
     public RoomChatFragment(Context context, BottomNavigationView navBottom, String roomID, String Uid){
@@ -75,6 +77,14 @@ public class RoomChatFragment extends Fragment implements RoomChatInterface{
             ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
             params.height = 300;
             recyclerView.setLayoutParams(params);
+            btnSend.setVisibility(View.VISIBLE);
+        });
+
+        btnSend.setOnClickListener(v -> {
+            roomChatPresenter.sendPicture();
+            btnSend.setVisibility(View.GONE);
+            imageList.setVisibility(View.GONE);
+
         });
 
         btn_sent_message.setOnClickListener(v -> {
@@ -132,11 +142,13 @@ public class RoomChatFragment extends Fragment implements RoomChatInterface{
         txt_name_room_chat = view.findViewById(R.id.txt_name_room_chat);
         avatar = view.findViewById(R.id.img_avatar_friend);
         imageList = view.findViewById(R.id.image_list);
+        btnSend = view.findViewById(R.id.btn_send_picture);
         btnImage = view.findViewById(R.id.btn_picture);
 
         btn_sent_message.setVisibility(View.GONE);
         imageList.setVisibility(View.GONE);
         recyclerView = view.findViewById(R.id.message_list);
+        btnSend.setVisibility(View.GONE);
 
         ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -157,4 +169,11 @@ public class RoomChatFragment extends Fragment implements RoomChatInterface{
     public void setAvatar(StorageReference url) {
         GlideApp.with(context).load(url).into(avatar);
     }
+
+    @Override
+    public void openButton() {
+
+    }
+
+
 }

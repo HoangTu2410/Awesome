@@ -30,4 +30,8 @@
     <string name="cancel">Cancel</string>
     <string name="message_seach_result">Message</string>
     <string name="enter_message">Enter Message …</string>
+    <string name="LastMessageImage">A picture was sent!</string>
+    <string name="send">Send</string>
+    <string name="save">Save</string>
+    <string name="create_message">Create Message</string>
 </resources>

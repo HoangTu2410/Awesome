@@ -138,11 +138,25 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/image_list"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:padding="5dp"
+                android:visibility="gone"
                 android:layout_height="200dp" />
+
+
+
         </RelativeLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/send"
+            android:background="@drawable/button_primary_background"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            android:id="@+id/btn_send_picture"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

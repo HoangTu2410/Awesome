@@ -31,4 +31,8 @@
     <string name="cancel">Huỷ</string>
     <string name="message_seach_result">Tin nhắn</string>
     <string name="enter_message">Nhập tin nhắn …</string>
+    <string name="LastMessageImage">Một bức ảnh vừa được gửi</string>
+    <string name="send">Gửi</string>
+    <string name="save">Lưu</string>
+    <string name="create_message">Tạo tin nhắn</string>
 </resources>

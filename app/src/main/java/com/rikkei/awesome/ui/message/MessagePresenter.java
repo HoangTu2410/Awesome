@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.rikkei.awesome.adapter.RoomChatAdapter;
@@ -41,7 +42,8 @@ public class MessagePresenter {
         this.context = context;
     }
 
-    public void getListRoom(RecyclerView recyclerView, String UId) {
+    public void getListRoom(RecyclerView recyclerView, String UId) {//lay danh sach cac phong chat cua nguoi dung kem cac thong tin lien quan
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         FirebaseQuery.getListUser( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,7 +81,7 @@ public class MessagePresenter {
                 final List<Member> objAL = new ArrayList<>(objHM.values());
                 for (Member tmp: objAL)
                     if (tmp.getUser1().equals(currentUser.getId())||tmp.getUser2().equals(currentUser.getId()))
-                        members.add(tmp);
+                        members.add(tmp); // lay thong tin ve cac phong chat nguoi dung tham gia
              }
 
 
@@ -103,7 +105,7 @@ public class MessagePresenter {
                 for (RoomChat tmp: objAL)
                     for (Member mem: members)
                         if (tmp.getId().equals(mem.getId()))
-                            roomChats.add(tmp);
+                            roomChats.add(tmp); //lay toan bo phong chat
 
                 recyclerView.setAdapter(new RoomChatAdapter(context, roomChats, members, users, UId));
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -116,12 +118,8 @@ public class MessagePresenter {
         });//get all roomchat end with Uid
 
 
-        ItemClickSupport.addTo(recyclerView).setOnItemClickListener((new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView1, int position, View v) {
-                messageInterface.openRoomChat(roomChats.get(position).getId());
-            }
-        }));
+        ItemClickSupport.addTo(recyclerView)
+                .setOnItemClickListener(((recyclerView1, position, v) -> messageInterface.openRoomChat(roomChats.get(position).getId()))); //them su kien khi click vao cac phong
     }
 
 

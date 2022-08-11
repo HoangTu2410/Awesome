@@ -3,6 +3,7 @@ package com.rikkei.awesome.ui.roomchat;
 import android.Manifest;
 import android.content.Context;
 import android.os.Environment;
+import android.util.SparseBooleanArray;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,6 +50,9 @@ public class RoomChatPresenter {
     private final List<Member> members = new ArrayList<>();
     private  Member member;
     private Message message;
+    private SparseBooleanArray sparseBooleanArray;
+    private ImageAdapter imageAdapter;
+    private final List<File> listImageSelected = new ArrayList<>();
 
 
 
@@ -65,7 +70,7 @@ public class RoomChatPresenter {
                 Message message = snapshot.getValue(Message.class);
                 messageList.add(message);
                 recyclerView.smoothScrollToPosition(messageList.size());
-                recyclerView.setAdapter(new MessageAdapter(context, messageList, Uid, user2));
+                recyclerView.setAdapter(new MessageAdapter(context, messageList, Uid, user2, roomID));
             }
 
             @Override
@@ -88,9 +93,9 @@ public class RoomChatPresenter {
 
             }
         });
-    }
+    } //lay danh sach tin nhan
 
-    public void InitRoomChat(String Uid, String friendName) {
+    public void InitRoomChat(String Uid, String friendName) { //nhap dau vao phong chat gom danh sach thanh vien, thông tin thanh vien,
         FirebaseQuery.getListMember(roomID, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,31 +153,27 @@ public class RoomChatPresenter {
     }
 
 
-    public void sendMessage(String text){
-        FirebaseQuery.sendMessage(roomID, text, Uid, System.currentTimeMillis(), new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-
-            }
+    public void sendMessage(String text){ //gui tin nhan van ban
+        FirebaseQuery.sendMessage(roomID, text, Uid, System.currentTimeMillis(), (error, ref) -> {
         }, "message" + (messageList.size() + 1));
     }
 
-    public void getListImage(RecyclerView recyclerView){
-        Dexter.withContext(context).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+    public void getListImage(RecyclerView recyclerView){ // lay hinh anh
+        Dexter.withContext(context).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, // xin quyen truy cap vao bo nho trong
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener() {
             @Override
-            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) { //neu nhu nguoi dung dong y cap quyen
                 displayImage(recyclerView);
             }
 
             @Override
             public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
-
+                permissionToken.continuePermissionRequest();
             }
         }).check();
     }
 
-    public ArrayList<File> findImage(File file){
+    public ArrayList<File> findImage(File file){ //tim kiem toan bo hinh anh trong bo nho trong
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
 
@@ -188,12 +189,22 @@ public class RoomChatPresenter {
         return arrayList;
     }
 
-    public void displayImage(RecyclerView recyclerView){
+    public void displayImage(RecyclerView recyclerView){ //hien thi hinh anh
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         imageList.clear();
         imageList.addAll(findImage(Environment.getExternalStorageDirectory())); // lay toan bo anh trong bo nho trong
-        recyclerView.setAdapter(new ImageAdapter(context, imageList));
-
+        imageAdapter = new ImageAdapter(context, imageList);
+        sparseBooleanArray = imageAdapter.getImageStateArray();
+        recyclerView.setAdapter(imageAdapter);
     }
+
+    public void sendPicture(){
+        listImageSelected.addAll(imageAdapter.getSelected());
+        for (File file: listImageSelected){
+            FirebaseQuery.sendImage(roomID, file, Uid, System.currentTimeMillis(), (error, ref) -> {
+            }, "message" + (messageList.size() + 1), context);
+        }
+    }
+
 }

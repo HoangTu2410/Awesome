@@ -5,4 +5,5 @@ import com.google.firebase.storage.StorageReference;
 public interface RoomChatInterface {
     void setTitle(String friendName);
     void setAvatar(StorageReference url);
+    void openButton();
 }
