@@ -22,6 +22,7 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rikkei.awesome.R;
+import com.rikkei.awesome.model.Member;
 import com.rikkei.awesome.model.Message;
 import com.rikkei.awesome.model.User;
 
@@ -39,6 +40,11 @@ public class FirebaseQuery<T> {
     public static final String MEMBERS = "member";
     public static final String ROOMCHATS = "room_chat";
     public static final String MESSAGES = "message_text";
+    public static final String description = "description";
+    public static final String lastMessage = "lastMessage";
+    public static final String sendBy = "sendBy";
+    public static final String time = "time";
+
     public static String USERNAME = "";
 
     public static void getListRoomChatFirst(String username, ValueEventListener valueEventListener){
@@ -85,11 +91,11 @@ public class FirebaseQuery<T> {
         DatabaseReference myRefGroup = database.getReference(ROOMCHATS).child(roomId);
 
         Map<String, Object> writeMes = new HashMap<>();
-        writeMes.put("description", "");
+        writeMes.put(description, "");
         writeMes.put("id", roomId);
-        writeMes.put("lastMessage", text);
-        writeMes.put("sendBy", userid);
-        writeMes.put("time", Long.toString(currentTimeMillis));
+        writeMes.put(lastMessage, text);
+        writeMes.put(sendBy, userid);
+        writeMes.put(time, Long.toString(currentTimeMillis));
 
         myRefGroup.updateChildren(writeMes);//ghi lai metadata cua phong chat
         myRefGroup.keepSynced(true);
@@ -118,16 +124,35 @@ public class FirebaseQuery<T> {
 
         String str = context.getString(R.string.LastMessageImage);
         Map<String, Object> writeMes = new HashMap<>();
-        writeMes.put("description", "");
+        writeMes.put(description, "");
         writeMes.put("id", roomId);
-        writeMes.put("lastMessage", str);
-        writeMes.put("sendBy", userid);
-        writeMes.put("time", Long.toString(currentTimeMillis));
+        writeMes.put(lastMessage, str);
+        writeMes.put(sendBy, userid);
+        writeMes.put(time, Long.toString(currentTimeMillis));
 
         myRefGroup.updateChildren(writeMes);
 
         DatabaseReference myRefMes = database.getReference(MESSAGES).child(roomId);
         Message message = new Message(text, Long.toString(currentTimeMillis), userid);
         myRefMes.child(messID).setValue(message);
+    }
+
+    public static void createRoomchat(String userid, String friendid, String roomid, long currentTimeMillis, Context context){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRefRoom = database.getReference(ROOMCHATS);
+
+        String str = context.getString(R.string.getGreeting);
+        Map<String, Object> writeMes = new HashMap<>();
+        writeMes.put(description, "");
+        writeMes.put("id", roomid);
+        writeMes.put(lastMessage, str);
+        writeMes.put(sendBy, "");
+        writeMes.put(time, Long.toString(currentTimeMillis));
+
+        myRefRoom.child(roomid).setValue(writeMes);
+
+        DatabaseReference myRefMem = database.getReference(MEMBERS);
+        Member member = new Member(userid, friendid);
+        myRefMem.child(roomid).setValue(member);
     }
 }

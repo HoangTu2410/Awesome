@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.User;
-import com.rikkei.awesome.ui.main.MainFragment;
+import com.rikkei.awesome.ui.home.HomeFragment;
 
 public class SignupFragment extends Fragment implements SignupInterface{
 
@@ -201,7 +201,7 @@ public class SignupFragment extends Fragment implements SignupInterface{
     @Override
     public void signupSuccessful(String UId) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context, UId),"fragment_main");
+        transaction.replace(R.id.home_container,new HomeFragment(context, UId),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }

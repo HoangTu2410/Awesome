@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.rikkei.awesome.ui.splash.SplashFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,18 +15,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.home_container, new SplashFragment(this), "fragment_splash");
+            transaction.replace(R.id.home_container, new SplashFragment(), "fragment_splash");
             transaction.commit();
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount()>0) {
-            getSupportFragmentManager().popBackStack();
-        }
-        super.onBackPressed();
-    }
 }

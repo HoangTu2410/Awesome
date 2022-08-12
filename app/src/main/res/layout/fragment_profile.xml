@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <View
+
+    <ImageView
+        android:id="@+id/img_background_profile"
         android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:layout_alignParentTop="true"
-        android:layout_height="500dp"
-        android:background="@drawable/background_splash"
-        android:id="@+id/background_personal"/>
+        android:scaleType="centerCrop"
+        android:background="@drawable/background_splash" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +52,7 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/btn_update_profile"
+            android:id="@+id/img_update_profile"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_alignParentTop="true"
@@ -253,6 +255,7 @@
                 android:src="@drawable/ic_logout" />
 
             <TextView
+                android:id="@+id/txtLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"

@@ -6,7 +6,7 @@
     <item android:id="@+id/friend_view"
         android:icon="@drawable/ic_friend"
         android:title="@string/friend_title"/>
-    <item android:id="@+id/personal_view"
+    <item android:id="@+id/profile_view"
         android:icon="@drawable/ic_personal"
         android:title="@string/personal"/>
 </menu>

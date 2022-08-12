@@ -35,4 +35,6 @@
     <string name="send">Gửi</string>
     <string name="save">Lưu</string>
     <string name="create_message">Tạo tin nhắn</string>
+    <string name="getGreeting">Gửi lời chào đến đối phương thôi nào</string>
+    <string name="friend_list_title">DANH SÁCH BẠN BÈ</string>
 </resources>

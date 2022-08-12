@@ -67,7 +67,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @NonNull
     @Override
     public RoomChatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RoomChatHolder(LayoutInflater.from(context).inflate(R.layout.item_recyclerview_1, parent, false));
+        return new RoomChatHolder(LayoutInflater.from(context).inflate(R.layout.item_recyclerview_message, parent, false));
     }
 
     @Override

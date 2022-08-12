@@ -34,4 +34,6 @@
     <string name="send">Send</string>
     <string name="save">Save</string>
     <string name="create_message">Create Message</string>
+    <string name="getGreeting">Send a wonderful greetings to your friends!</string>
+    <string name="friend_list_title">FRIENDS LIST</string>
 </resources>

@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.rikkei.awesome.MainActivity;
 import com.rikkei.awesome.R;
 import com.rikkei.awesome.model.User;
-import com.rikkei.awesome.ui.main.MainFragment;
+import com.rikkei.awesome.ui.home.HomeFragment;
 import com.rikkei.awesome.ui.signup.SignupFragment;
 
 import java.util.regex.Pattern;
@@ -150,7 +150,7 @@ public class LoginFragment extends Fragment implements LoginInterface{
     @Override
     public void loginSuccessful(String UId) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_container,new MainFragment(context, UId),"fragment_main");
+        transaction.replace(R.id.home_container,new HomeFragment(context, UId),"fragment_main");
         transaction.addToBackStack("fragment_main");
         transaction.commit();
     }
