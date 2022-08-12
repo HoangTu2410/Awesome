@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rikkei.awesome.R;
 
 
-public class SearchMessageFragment extends Fragment implements SearchMessageInterface{
+public class SearchMessageFragment extends Fragment {
 
     View view;
     Context context;

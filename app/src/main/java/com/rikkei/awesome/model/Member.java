@@ -13,6 +13,12 @@ public class Member implements Serializable {
                 this.user2 = user2;
         }
 
+        public Member(String id, String user1, String user2) {
+                this.id = id;
+                this.user1 = user1;
+                this.user2 = user2;
+        }
+
         public String getUser1() {
                 return user1;
         }

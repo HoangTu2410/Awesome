@@ -44,7 +44,7 @@ public class FirebaseQuery<T> {
     public static final String lastMessage = "lastMessage";
     public static final String sendBy = "sendBy";
     public static final String time = "time";
-
+    public static final int FRIEND = 1;
     public static String USERNAME = "";
 
     public static void getListRoomChatFirst(String username, ValueEventListener valueEventListener){
@@ -137,7 +137,7 @@ public class FirebaseQuery<T> {
         myRefMes.child(messID).setValue(message);
     }
 
-    public static void createRoomchat(String userid, String friendid, String roomid, long currentTimeMillis, Context context){
+    public static void createRoomchat(String userid, String friendid, String roomid, long currentTimeMillis, Context context, DatabaseReference.CompletionListener completionListener){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRefRoom = database.getReference(ROOMCHATS);
 
@@ -152,7 +152,14 @@ public class FirebaseQuery<T> {
         myRefRoom.child(roomid).setValue(writeMes);
 
         DatabaseReference myRefMem = database.getReference(MEMBERS);
-        Member member = new Member(userid, friendid);
+        Member member = new Member(roomid, userid, friendid);
         myRefMem.child(roomid).setValue(member);
+    }
+
+    public static void getAllFriend(String Uid, ValueEventListener valueEventListener){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("relationships");
+        myRef.keepSynced(true);
+        myRef.orderByChild("status").equalTo(FRIEND).addValueEventListener(valueEventListener);
     }
 }

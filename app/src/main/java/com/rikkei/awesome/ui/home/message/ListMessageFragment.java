@@ -57,8 +57,6 @@ public class ListMessageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list_message,container,false);
         context = getActivity().getApplicationContext();
-
-        FirebaseDatabase.getInstance();
         return view;
     }
 
@@ -72,9 +70,10 @@ public class ListMessageFragment extends Fragment {
         txtCancel.setOnClickListener(view12 -> txtCancel.setVisibility(TextView.GONE));
 
         btn_create_roomchat.setOnClickListener(v -> {
+            String roomID = "room"+ (roomChats.size()+1);
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.home_container, new CreateRoomChatFragment(context, Uid), "Create_roomChat")
+                    .replace(R.id.home_container, new CreateRoomChatFragment(context, Uid, roomID), "Create_roomChat")
                     .addToBackStack("Create_roomChat")
                     .commit();
         });
@@ -161,7 +160,6 @@ public class ListMessageFragment extends Fragment {
                 };
                 Map<String, RoomChat> objHM = snapshot.getValue(objGTI);
                 final List<RoomChat> objAL = new ArrayList<>(objHM.values());
-                roomChats.clear();
                 for (RoomChat tmp: objAL)
                     for (Member mem: members)
                         if (tmp.getId().equals(mem.getId()))

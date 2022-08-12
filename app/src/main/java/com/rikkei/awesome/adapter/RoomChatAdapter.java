@@ -73,13 +73,7 @@ public class RoomChatAdapter extends RecyclerView.Adapter<RoomChatHolder> {
     @Override
     public void onBindViewHolder(@NonNull RoomChatHolder holder, int position) {
 
-
-
-
-
         FirebaseStorage storage = FirebaseStorage.getInstance();
-
-        final long mb = 1024*1024;
 
         String name = "";
         for (Member member: listMember){
