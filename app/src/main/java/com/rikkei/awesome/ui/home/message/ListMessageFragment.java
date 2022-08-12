@@ -49,6 +49,7 @@ public class ListMessageFragment extends Fragment {
     private User currentUser;
     private final List<Member> members = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
+    private final List<Integer> maxRoom = new ArrayList<>();
     ImageView btn_create_roomchat;
 
 
@@ -70,7 +71,7 @@ public class ListMessageFragment extends Fragment {
         txtCancel.setOnClickListener(view12 -> txtCancel.setVisibility(TextView.GONE));
 
         btn_create_roomchat.setOnClickListener(v -> {
-            String roomID = "room"+ (roomChats.size()+1);
+            String roomID = "room"+ (maxRoom.get(0)+1);
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.home_container, new CreateRoomChatFragment(context, Uid, roomID), "Create_roomChat")
@@ -152,6 +153,7 @@ public class ListMessageFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 roomChats.clear();
+                maxRoom.clear();
                 GenericTypeIndicator<HashMap<String, RoomChat>> objGTI = new GenericTypeIndicator<HashMap<String, RoomChat>>() {
                     @Override
                     public boolean equals(@Nullable Object obj) {
@@ -160,6 +162,7 @@ public class ListMessageFragment extends Fragment {
                 };
                 Map<String, RoomChat> objHM = snapshot.getValue(objGTI);
                 final List<RoomChat> objAL = new ArrayList<>(objHM.values());
+                maxRoom.add(objAL.size());
                 for (RoomChat tmp: objAL)
                     for (Member mem: members)
                         if (tmp.getId().equals(mem.getId()))
