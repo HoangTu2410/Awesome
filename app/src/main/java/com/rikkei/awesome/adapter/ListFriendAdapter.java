@@ -24,10 +24,15 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.It
 
     List<User> mList;
     Context context;
+    private ItemFriendListener itemFriendListener;
 
     public ListFriendAdapter(Context context,List<User> mList) {
         this.context = context;
         this.mList = mList;
+    }
+
+    public void setItemFriendListener(ItemFriendListener itemFriendListener) {
+        this.itemFriendListener = itemFriendListener;
     }
 
     @NonNull
@@ -61,6 +66,14 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.It
                 holder.section.setText(String.valueOf(name.charAt(0)));
             }
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (itemFriendListener != null) {
+                    itemFriendListener.onClickItemFriend(user);
+                }
+            }
+        });
     }
 
     @Override
@@ -82,5 +95,9 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.It
             avatar_friend = itemView.findViewById(R.id.avatar_friend);
             btn_add_friend = itemView.findViewById(R.id.btn_add_friend);
         }
+    }
+
+    public interface ItemFriendListener {
+        void onClickItemFriend(User friend);
     }
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -27,7 +26,6 @@ public class RequestReceivedAdapter extends RecyclerView.Adapter<RequestReceived
     Context context;
     List<RelationShip> mList;
     private AcceptRequestFriendListener acceptRequestFriendListener;
-    private RefuseRequestFriendListener refuseRequestFriendListener;
 
     public RequestReceivedAdapter(Context context, List<RelationShip> mList) {
         this.context = context;
@@ -69,10 +67,6 @@ public class RequestReceivedAdapter extends RecyclerView.Adapter<RequestReceived
         this.acceptRequestFriendListener = acceptRequestFriendListener;
     }
 
-    public void setRefuseRequestFriendListener(RefuseRequestFriendListener refuseRequestFriendListener) {
-        this.refuseRequestFriendListener = refuseRequestFriendListener;
-    }
-
 
 
 
@@ -92,7 +86,4 @@ public class RequestReceivedAdapter extends RecyclerView.Adapter<RequestReceived
         void onClickAcceptRequestFriend(View view, long idRelationship);
     }
 
-    public interface RefuseRequestFriendListener {
-        void onClickRefuseRequestFriend(View view, long idRelationship);
-    }
 }

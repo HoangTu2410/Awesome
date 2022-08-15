@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestFragment extends Fragment implements RequestSendAdapter.CancelRequestFriendListener,
-        RequestReceivedAdapter.AcceptRequestFriendListener, RequestReceivedAdapter.RefuseRequestFriendListener {
+        RequestReceivedAdapter.AcceptRequestFriendListener{
 
     List<RelationShip> listRequestSend;
     List<RelationShip> listRequestReceived;
@@ -37,6 +39,7 @@ public class RequestFragment extends Fragment implements RequestSendAdapter.Canc
     private RequestReceivedAdapter receivedAdapter;
     private String myId;
     private FirebaseDatabase database;
+    private ConstraintLayout constraintLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,13 +146,14 @@ public class RequestFragment extends Fragment implements RequestSendAdapter.Canc
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        constraintLayout = view.findViewById(R.id.constraintlayout);
         RecyclerView recyclerViewReceived = view.findViewById(R.id.recyclerViewReceived);
         receivedAdapter = new RequestReceivedAdapter(getContext(),listRequestReceived);
         LinearLayoutManager managerReceived = new LinearLayoutManager(getContext());
         recyclerViewReceived.setLayoutManager(managerReceived);
         recyclerViewReceived.setAdapter(receivedAdapter);
         receivedAdapter.setAcceptRequestFriendListener(this);
-        receivedAdapter.setRefuseRequestFriendListener(this);
+        addActionSwipe(recyclerViewReceived,receivedAdapter);
 
         RecyclerView recyclerViewSend = view.findViewById(R.id.recyclerViewSend);
         sendAdapter = new RequestSendAdapter(getContext(),listRequestSend);
@@ -157,6 +161,25 @@ public class RequestFragment extends Fragment implements RequestSendAdapter.Canc
         recyclerViewSend.setLayoutManager(managerSend);
         recyclerViewSend.setAdapter(sendAdapter);
         sendAdapter.setCancelRequestFriendListener(this);
+    }
+
+    private void addActionSwipe(RecyclerView recyclerView, RequestReceivedAdapter receivedAdapter) {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                RelationShip relationShip = listRequestReceived.get(viewHolder.getAdapterPosition());
+                DatabaseReference myRef = database.getReference("relationships").child(String.valueOf(relationShip.getId()));
+                myRef.removeValue();
+                receivedAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                Snackbar snackbar = Snackbar.make(constraintLayout,"Refuse friend request from "+relationShip.getUser1().getFullName()+" !",Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -182,9 +205,4 @@ public class RequestFragment extends Fragment implements RequestSendAdapter.Canc
         myRef.child("status").setValue(RelationShip.FRIEND);
     }
 
-    @Override
-    public void onClickRefuseRequestFriend(View view, long idRelationship) {
-        DatabaseReference myRef = database.getReference("relationships").child(String.valueOf(idRelationship));
-        myRef.removeValue();
-    }
 }

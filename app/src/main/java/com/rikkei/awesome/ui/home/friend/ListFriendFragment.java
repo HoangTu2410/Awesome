@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ListFriendFragment extends Fragment {
+public class ListFriendFragment extends Fragment implements ListFriendAdapter.ItemFriendListener {
 
     private ListFriendAdapter adapter;
     private List<User> mListFiend;
@@ -129,6 +130,7 @@ public class ListFriendFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        adapter.setItemFriendListener(this);
     }
 
     private void sortByName() {
@@ -142,5 +144,10 @@ public class ListFriendFragment extends Fragment {
                 return name1.compareTo(name2);
             }
         });
+    }
+
+    @Override
+    public void onClickItemFriend(User friend) {
+        Toast.makeText(getContext(), friend.getFullName(), Toast.LENGTH_SHORT).show();
     }
 }
